@@ -1,0 +1,16 @@
+export const KATEGORI_OPTIONS = [
+  { value: 'dapur', label: 'Dapur' },
+  { value: 'elektronik', label: 'Elektronik' },
+  { value: 'fashion', label: 'Fashion' },
+  { value: 'handphone_tablet', label: 'Handphone & Tablet' },
+  { value: 'hiburan', label: 'Hiburan (Buku, Film, Musik)' },
+  { value: 'ibu_bayi', label: 'Ibu & Bayi' },
+  { value: 'kecantikan', label: 'Kecantikan' },
+  { value: 'kesehatan', label: 'Kesehatan' },
+  { value: 'makanan_minuman', label: 'Makanan & Minuman' },
+  { value: 'olahraga', label: 'Olahraga' },
+  { value: 'otomotif', label: 'Otomotif' },
+  { value: 'perawatan_tubuh', label: 'Perawatan Tubuh & Skincare' },
+  { value: 'pertukangan', label: 'Pertukangan & Alat' },
+  { value: 'rumah_tangga', label: 'Rumah Tangga' },
+]
