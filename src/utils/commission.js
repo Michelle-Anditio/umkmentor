@@ -1,12 +1,57 @@
-import { PLATFORM_KOMISI } from '../constants/platforms'
+export const CATEGORY_COMMISSION_RANGES = {
+  elektronik: {
+    label: 'Elektronik',
+    min: 2.5,
+    max: 8.5,
+  },
+  pertukangan: {
+    label: 'Pertukangan',
+    min: 4.0,
+    max: 8.5,
+  },
+  olahraga: {
+    label: 'Olahraga',
+    min: 6.0,
+    max: 8.5,
+  },
+  fashion: {
+    label: 'Fashion',
+    min: 2.5,
+    max: 8.5,
+  },
+  makanan_minuman: {
+    label: 'Makanan & Minuman',
+    min: 4.0,
+    max: 8.5,
+  },
+  kecantikan: {
+    label: 'Kecantikan',
+    min: 4.0,
+    max: 8.5,
+  },
+  hiburan: {
+    label: 'Hiburan',
+    min: 6.0,
+    max: 8.5,
+  },
+}
 
-export function hitungKomisi(hargaJual, modalAwal, platformKey) {
-  const harga = parseInt(hargaJual) || 0
-  const modal = parseInt(modalAwal) || 0
-  const komisiPct = PLATFORM_KOMISI[platformKey] || 0
-  const komisiRp = Math.round((harga * komisiPct) / 100)
-  const untung = harga - modal - komisiRp
-  const marginPct = harga > 0 ? Math.round((untung / harga) * 100) : 0
+export function getCommissionRange(categoryKey) {
+  const data = CATEGORY_COMMISSION_RANGES[categoryKey]
 
-  return { komisiPct, komisiRp, untung, marginPct }
+  if (!data) {
+    return {
+      label: 'Kategori tidak diketahui',
+      rangeText: 'Belum tersedia',
+      disclaimer:
+        'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
+    }
+  }
+
+  return {
+    label: data.label,
+    rangeText: `${data.min}% – ${data.max}%`,
+    disclaimer:
+      'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
+  }
 }

@@ -131,7 +131,7 @@ export default function ProductAnalysisSection({
             </div>
 
             <button className="submit-btn" type="button" onClick={runAnalysis}>
-              🤖 Analisis Sekarang
+              Analisis Sekarang
             </button>
           </div>
 

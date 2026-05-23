@@ -623,7 +623,7 @@ section { padding: 100px 48px; }
 
 .insight-text {
   font-size: 13px;
-  color: var(--black);
+  color: var(--white);
   line-height: 1.6;
 }
 

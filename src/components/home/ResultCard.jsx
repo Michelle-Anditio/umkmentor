@@ -1,5 +1,4 @@
-import { PLATFORM_LABELS } from '../../constants/platforms'
-import { hitungKomisi } from '../../utils/commission'
+import { getCommissionRange } from '../../utils/commission'
 
 export default function ResultCard({ analysisState, resultData, productData, sentimentData, selectedPlatforms }) {
   const scoreBadgeStyle =
@@ -92,31 +91,32 @@ export default function ResultCard({ analysisState, resultData, productData, sen
             </>
           )}
 
-          {selectedPlatforms.length > 0 && resultData.hargaJual > 0 && (
+          {resultData.kategori && (
             <div style={{ marginTop: '12px', marginBottom: '12px' }}>
               <div style={{ fontSize: '12px', color: 'var(--muted-dark)', marginBottom: '8px', fontWeight: '600' }}>
-                Simulasi Komisi Platform
+                Range Komisi
               </div>
-              {selectedPlatforms.map(platformKey => {
-                const sim = hitungKomisi(resultData.hargaJual, resultData.modalAwal, platformKey)
+
+              {(() => {
+                const commission = getCommissionRange(resultData.kategori)
+
                 return (
-                  <div key={platformKey} style={{ marginBottom: '8px', padding: '10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px', fontSize: '12px' }}>
-                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>{PLATFORM_LABELS[platformKey]} ({sim.komisiPct}%)</div>
-                    <div className="metric-row" style={{ marginBottom: '2px' }}>
-                      <span className="metric-label">Potongan komisi</span>
-                      <span className="metric-value bad">- Rp {sim.komisiRp.toLocaleString('id')}</span>
+                  <div style={{ marginBottom: '8px', padding: '10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px', fontSize: '12px' }}>
+                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>
+                      {commission.label}
                     </div>
-                    {resultData.modalAwal > 0 && (
-                      <div className="metric-row">
-                        <span className="metric-label">Estimasi untung</span>
-                        <span className={`metric-value ${sim.untung > 0 ? 'good' : 'bad'}`}>
-                          Rp {sim.untung.toLocaleString('id')} ({sim.marginPct}%)
-                        </span>
-                      </div>
-                    )}
+
+                    <div className="metric-row" style={{ marginBottom: '2px' }}>
+                      <span className="metric-label">Estimasi Fee</span>
+                      <span className="metric-value warn">{commission.rangeText}</span>
+                    </div>
+
+                    <p style={{ margin: '8px 0 0', color: 'var(--muted-dark)', fontSize: '11px', lineHeight: '1.5' }}>
+                      {commission.disclaimer}
+                    </p>
                   </div>
                 )
-              })}
+              })()}
             </div>
           )}
 
