@@ -81,6 +81,22 @@ export default function ProductAnalysisSection({
             </div>
 
             <div className="form-grid-2">
+              <div className="form-group">
+                <label htmlFor="input-rating">Rating Rata-rata</label>
+                <input
+                  id="input-rating"
+                  type="number"
+                  placeholder="5.0"
+                  min="0"
+                  max="5"
+                  step="0.1"
+                  value={formData.rating_average}
+                  onChange={e => setFormData(f => ({ ...f, rating_average: e.target.value }))}
+                />
+              </div>
+            </div>
+
+            <div className="form-grid-2">
               <label
                 className={`platform-opt${formData.is_official ? ' selected' : ''}`}
                 style={{ cursor: 'pointer', userSelect: 'none' }}
@@ -93,17 +109,18 @@ export default function ProductAnalysisSection({
                 />
                 🏢 Official Store
               </label>
+
               <label
-                className={`platform-opt${formData.gold_merchant ? ' selected' : ''}`}
+                className={`platform-opt${formData.is_topads ? ' selected' : ''}`}
                 style={{ cursor: 'pointer', userSelect: 'none' }}
               >
                 <input
                   type="checkbox"
-                  checked={formData.gold_merchant}
-                  onChange={e => setFormData(f => ({ ...f, gold_merchant: e.target.checked }))}
+                  checked={formData.is_topads}
+                  onChange={e => setFormData(f => ({ ...f, is_topads: e.target.checked }))}
                   style={{ display: 'none' }}
                 />
-                ⭐ Gold Merchant
+                📢 TopAds
               </label>
             </div>
 

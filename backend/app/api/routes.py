@@ -22,23 +22,24 @@ def get_sentiment_summary():
 
 @router.post("/predict")
 def predict_sentiment(request: ReviewRequest):
-    if sentiment_state.model is None or sentiment_state.tokenizer is None:
-        return {"error": "Model belum dimuat."}
+    if sentiment_state.model is None or sentiment_state.tfidf is None:
+        return {"error": "Model sentimen belum dimuat."}
 
-    emotions = predict_texts(request.reviews)
-    return build_summary(emotions)
+    sentiments = predict_texts(request.reviews)
+    return build_summary(sentiments)
 
 
 @router.post("/predict-product")
 def predict_product(request: ProductRequest):
     if product_state.model is None:
-        return {"error": "Model produk belum dimuat. Pastikan folder models_final tersedia."}
+        return {"error": "Model produk belum dimuat. Pastikan folder models/product tersedia."}
 
     return run_product_prediction(
         kategori=request.kategori,
         harga_jual=request.harga_jual,
-        is_official=request.is_official,
-        gold_merchant=request.gold_merchant,
-        discount_pct=request.discount_pct,
+        harga_diskon=request.harga_diskon,
         stok=request.stok,
+        is_official=request.is_official,
+        rating_average=request.rating_average,
+        is_topads=request.is_topads,
     )

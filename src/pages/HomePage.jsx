@@ -21,7 +21,8 @@ const initialFormData = {
   diskon: 0,
   stok: '',
   is_official: false,
-  gold_merchant: false,
+  is_topads: false,
+  rating_average: 5,
   deskripsi: '',
 }
 
@@ -66,18 +67,24 @@ export default function HomePage() {
     setSentimentData(null)
     setProductData(null)
 
-    const hargaJual = parseInt(formData.harga.replace(/\D/g, '')) || 0
-    const modalAwal = parseInt(formData.modal.replace(/\D/g, '')) || 0
-    const kategoriLabel = KATEGORI_OPTIONS.find(kategori => kategori.value === formData.produk)?.label || formData.produk
+    const hargaJual = parseInt(String(formData.harga).replace(/\D/g, '')) || 0
+    const modalAwal = parseInt(String(formData.modal).replace(/\D/g, '')) || 0
+    const diskonPersen = parseFloat(formData.diskon) || 0
+    const hargaDiskon = Math.round(hargaJual - hargaJual * (diskonPersen / 100))
+
+    const kategoriLabel =
+      KATEGORI_OPTIONS.find(kategori => kategori.value === formData.produk)?.label ||
+      formData.produk
 
     try {
       const productPromise = predictProduct({
         kategori: formData.produk,
         harga_jual: hargaJual,
-        is_official: formData.is_official ? 1 : 0,
-        gold_merchant: formData.gold_merchant ? 1 : 0,
-        discount_pct: parseFloat(formData.diskon) || 0,
+        harga_diskon: hargaDiskon,
         stok: parseInt(formData.stok) || 0,
+        is_official: formData.is_official ? 1 : 0,
+        rating_average: parseFloat(formData.rating_average) || 5,
+        is_topads: formData.is_topads ? 1 : 0,
       })
 
       const sentimentPromise = formData.produk === 'elektronik'
@@ -92,7 +99,7 @@ export default function HomePage() {
 
       setProductData(productResult)
       setSentimentData(sentimentResult)
-      setResultData({ hargaJual, modalAwal, kategoriLabel })
+      setResultData({ hargaJual, modalAwal, hargaDiskon, kategoriLabel })
       setAnalysisState('done')
     } catch (error) {
       console.error('Gagal analisis:', error)

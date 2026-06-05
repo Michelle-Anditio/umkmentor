@@ -8,7 +8,9 @@ class ReviewRequest(BaseModel):
 class ProductRequest(BaseModel):
     kategori: str
     harga_jual: int
+    harga_diskon: int
+    stok: int
+
     is_official: int = 0
-    gold_merchant: int = 0
-    discount_pct: float = 0.0
-    stok: int = 100
+    rating_average: float = 5.0
+    is_topads: int = 0
