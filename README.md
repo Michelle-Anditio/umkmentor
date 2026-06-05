@@ -6,7 +6,7 @@
   > Platform konsultasi bisnis berbasis AI untuk calon seller pemula yang ingin memulai jualan online
 </div>
 
-[View Demo](https://umkmentor.netlify.app) • [Report Bug](https://github.com/231130651/umkmentor/issues/new?labels=bug) • [Request Feature](https://github.com/231130651/umkmentor/issues/new?labels=enhancement)
+[View Demo](https://umkmentor.netlify.app) • [Report Bug](https://github.com/Michelle-Anditio/umkmentor/issues/new?labels=bug) • [Request Feature](https://github.com/Michelle-Anditio/umkmentor/issues/new?labels=enhancement)
 
 ---
 
