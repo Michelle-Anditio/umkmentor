@@ -1,6 +1,5 @@
 node_modules/
 dist/
 .env
-backend/models/
 backend/__pycache__/
 *.pyc
