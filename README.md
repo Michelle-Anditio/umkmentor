@@ -1,16 +1,16 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/231130651/umkmentor/master/public/icon-512.png" alt="UMKMentor Logo" width="100" height="100">
-  
+  <img src="https://raw.githubusercontent.com/Michelle-Anditio/umkmentor/master/public/icon-512.png" alt="UMKMentor Logo" width="100" height="100">
+
   # UMKMentor
 
-  > Platform konsultasi bisnis berbasis AI untuk calon seller pemula yang ingin memulai jualan online
+  > AI-powered business consultation platform that helps beginner online sellers make data-driven decisions through Machine Learning.
 </div>
 
-[View Demo](https://umkmentor.netlify.app) • [Report Bug](https://github.com/Michelle-Anditio/umkmentor/issues/new?labels=bug) • [Request Feature](https://github.com/Michelle-Anditio/umkmentor/issues/new?labels=enhancement)
+[View Demo](https://umkmentor.netlify.app) • [Machine Learning Repo](https://github.com/adinnn30/UMKMentor-ML) • [Report Bug](https://github.com/Michelle-Anditio/umkmentor/issues/new?labels=bug) • [Request Feature](https://github.com/Michelle-Anditio/umkmentor/issues/new?labels=enhancement)
 
 ---
 
-## 📋 Daftar Isi
+## 📋 Table of Contents
 
 - [About The Project](#about-the-project)
 - [Built With](#built-with)
@@ -18,6 +18,7 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Features](#features)
+- [Machine Learning](#-machine-learning)
 - [License](#license)
 - [Contact](#contact)
 
@@ -25,7 +26,7 @@
 
 ## 📌 About The Project
 
-**UMKMentor** adalah platform yang dirancang untuk membantu calon seller pemula yang bingung memulai jualan online. Dengan memanfaatkan AI dan analisis data e-commerce real-time, UMKMentor memberikan rekomendasi yang personal dan berbasis data — bukan sekadar intuisi.
+**UMKMentor** is an AI-powered business consultation platform designed to help aspiring online sellers make data-driven business decisions. By combining Machine Learning, product potential prediction, and marketplace review sentiment analysis, UMKMentor provides practical recommendations that help users better understand market opportunities before starting their online business.
 
 ---
 
@@ -34,6 +35,9 @@
 - [![React][React.js]][React-url]
 - [![Vite][Vite.dev]][Vite-url]
 - [![Firebase][Firebase.com]][Firebase-url]
+- [![FastAPI][FastAPI]][FastAPI-url]
+- [![Scikit-Learn][Sklearn]][Sklearn-url]
+- [![XGBoost][XGBoost]][XGBoost-url]
 - [![Lucide React][Lucide.dev]][Lucide-url]
 
 ---
@@ -43,7 +47,8 @@
 ### Prerequisites
 
 * Node.js >= 18
-* npm atau yarn
+* Python >= 3.11
+* npm or yarn
   ```sh
   npm install npm@latest -g
   ```
@@ -52,17 +57,17 @@
 
 1. Clone repository
    ```sh
-   git clone https://github.com/231130651/umkmentor.git
+   git clone https://github.com/Michelle-Anditio/umkmentor.git
    ```
-2. Masuk ke direktori project
+2. Enter the project directory
    ```sh
    cd umkmentor
    ```
-3. Install dependencies
+3. Install frontend dependencies
    ```sh
    npm install
    ```
-4. Buat file `.env` dan masukkan Firebase credentials
+4. Create a `.env` file and add your Firebase credentials
    ```env
    VITE_FIREBASE_API_KEY=your_api_key
    VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -71,7 +76,20 @@
    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
    VITE_FIREBASE_APP_ID=your_app_id
    ```
-5. Jalankan development server
+5. Install backend dependencies
+   ```sh
+   cd backend
+   pip install -r requirements.txt
+   ```
+6. Run the backend server
+   ```sh
+   uvicorn main:app --reload --port 8000
+   ```
+   Swagger API:
+   ```
+   http://127.0.0.1:8000/docs
+   ```
+7. Run the frontend
    ```sh
    npm run dev
    ```
@@ -80,34 +98,55 @@
 
 ## ✨ Features
 
-### 1. **Analisis Potensi Produk**
-Prediksi apakah produk yang ingin kamu jual berpotensi laku di pasaran berdasarkan pola data penjualan e-commerce.
+### 1. **Product Potential Analysis**
+Predict whether a product has a high chance of selling using an XGBoost Machine Learning model based on category, selling price, discounted price, stock, average rating, Official Store status, and TopAds.
 
-### 2. **Rekomendasi Platform + Simulasi Komisi**
-Bandingkan Shopee, Tokopedia, dan TikTok Shop — dapatkan rekomendasi platform terbaik untuk produkmu dengan simulasi potongan komisi yang akurat.
+### 2. **Platform Recommendation + Commission Simulation**
+Compare Shopee, Tokopedia, and TikTok Shop to find the most suitable marketplace with estimated commission calculations.
 
-### 3. **Insight Kompetitor**
-Analisis harga dan volume penjualan kompetitor di kategori produkmu secara real-time.
+### 3. **Competitor Insights**
+Analyze competitor pricing and marketplace trends to help users position their products more effectively.
 
-### 4. **Analisis Sentiment Review**
-Analisis sentiment teks review berbasis AI untuk memahami konteks bahasa Indonesia.
+### 4. **Review Sentiment Analysis**
+Analyze Indonesian marketplace reviews using a TF-IDF + Linear SVM model to better understand customer perception.
 
-### 5. **Konsultasi dengan Pakar**
-Lanjutkan konsultasi dengan konsultan bisnis berpengalaman untuk pendampingan yang lebih mendalam.
+### 5. **Expert Consultation**
+Continue your business journey with guidance from experienced business mentors.
+
+---
+
+## Machine Learning
+
+### Product Prediction
+
+- Model: XGBoost
+- Test AUC: **0.760**
+- Accuracy: **68%**
+
+### Review Sentiment Analysis
+
+- Model: TF-IDF + Linear SVM
+
+Machine Learning Repository:
+
+https://github.com/adinnn30/UMKMentor-ML
 
 ---
 
 ## 📄 License
 
-Project ini dibuat untuk keperluan Capstone Project Dicoding dan bersifat akademis.
+This project was developed as part of the Dicoding Capstone Project and is intended for educational and academic purposes.
 
 ---
 
 ## 📮 Contact
 
-Project Link: [https://github.com/231130651/umkmentor](https://github.com/231130651/umkmentor)
+Project Link: https://github.com/Michelle-Anditio/umkmentor
 
-Demo: [https://umkmentor.netlify.app](https://umkmentor.netlify.app)
+Demo: https://umkmentor.netlify.app
+
+Machine Learning Repository:
+https://github.com/adinnn30/UMKMentor-ML
 
 ---
 
@@ -118,5 +157,11 @@ Demo: [https://umkmentor.netlify.app](https://umkmentor.netlify.app)
 [Vite-url]: https://vitejs.dev
 [Firebase.com]: https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white
 [Firebase-url]: https://firebase.google.com
+[FastAPI]: https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white
+[FastAPI-url]: https://fastapi.tiangolo.com
+[Sklearn]: https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white
+[Sklearn-url]: https://scikit-learn.org
+[XGBoost]: https://img.shields.io/badge/XGBoost-AA4A44?style=for-the-badge
+[XGBoost-url]: https://xgboost.ai
 [Lucide.dev]: https://img.shields.io/badge/Lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white
 [Lucide-url]: https://lucide.dev
