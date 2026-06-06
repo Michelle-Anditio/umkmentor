@@ -8,6 +8,7 @@ import Navbar from '../components/home/Navbar'
 import HeroSection from '../components/home/HeroSection'
 import HowItWorksSection from '../components/home/HowItWorksSection'
 import FeaturesSection from '../components/home/FeaturesSection'
+import ProfitabilitySection from '../components/home/ProfitabilitySection'
 import ConsultationSection from '../components/home/ConsultationSection'
 import ProductAnalysisSection from '../components/home/ProductAnalysisSection'
 import ExpertsSection from '../components/home/ExpertsSection'
@@ -26,17 +27,11 @@ const initialFormData = {
   deskripsi: '',
 }
 
-const initialPlatforms = {
-  shopee: false,
-  tokopedia: false,
-  tiktok: false,
-}
 
 export default function HomePage() {
   const [user, setUser] = useState(null)
   const [navOpen, setNavOpen] = useState(false)
   const [activeFeature, setActiveFeature] = useState('potensi')
-  const [platforms, setPlatforms] = useState(initialPlatforms)
   const [analysisState, setAnalysisState] = useState('idle')
   const [formData, setFormData] = useState(initialFormData)
   const [resultData, setResultData] = useState(null)
@@ -47,10 +42,6 @@ export default function HomePage() {
     const unsubscribe = onAuthStateChanged(auth, currentUser => setUser(currentUser))
     return () => unsubscribe()
   }, [])
-
-  const togglePlatform = key => {
-    setPlatforms(current => ({ ...current, [key]: !current[key] }))
-  }
 
   const runAnalysis = async () => {
     if (!formData.produk) {
@@ -68,7 +59,6 @@ export default function HomePage() {
     setProductData(null)
 
     const hargaJual = parseInt(String(formData.harga).replace(/\D/g, '')) || 0
-    const modalAwal = parseInt(String(formData.modal).replace(/\D/g, '')) || 0
     const diskonPersen = parseFloat(formData.diskon) || 0
     const hargaDiskon = Math.round(hargaJual - hargaJual * (diskonPersen / 100))
 
@@ -99,16 +89,14 @@ export default function HomePage() {
 
       setProductData(productResult)
       setSentimentData(sentimentResult)
-      setResultData({ hargaJual, modalAwal, hargaDiskon, kategoriLabel })
+      setResultData({ hargaJual, hargaDiskon, kategori: formData.produk, kategoriLabel })
       setAnalysisState('done')
     } catch (error) {
-      console.error('Gagal analisis:', error)
-      alert('Server tidak bisa dijangkau. Pastikan FastAPI sudah berjalan di port 8000.')
+      console.error('Gagal analisis detail:', error)
+      alert(error.message)
       setAnalysisState('idle')
     }
   }
-
-  const selectedPlatforms = Object.keys(platforms).filter(key => platforms[key])
 
   return (
     <>
@@ -122,15 +110,13 @@ export default function HomePage() {
         <ProductAnalysisSection
           formData={formData}
           setFormData={setFormData}
-          platforms={platforms}
-          togglePlatform={togglePlatform}
           runAnalysis={runAnalysis}
           analysisState={analysisState}
           resultData={resultData}
           productData={productData}
           sentimentData={sentimentData}
-          selectedPlatforms={selectedPlatforms}
         />
+        <ProfitabilitySection />
         <ExpertsSection />
       </main>
 

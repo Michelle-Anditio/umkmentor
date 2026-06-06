@@ -1,57 +1,62 @@
-export const CATEGORY_COMMISSION_RANGES = {
+export const PLATFORM_COMMISSION = {
   elektronik: {
     label: 'Elektronik',
-    min: 2.5,
-    max: 8.5,
+    tokopedia: { min: 4.0, max: 8.5 },
+    shopee:    { min: 2.5, max: 8.0 },
+    tiktok:    { min: 4.0, max: 8.0 },
   },
   pertukangan: {
     label: 'Pertukangan',
-    min: 4.0,
-    max: 8.5,
+    tokopedia: { min: 4.0, max: 8.5 },
+    shopee:    { min: 4.0, max: 7.5 },
+    tiktok:    { min: 4.0, max: 8.0 },
   },
   olahraga: {
     label: 'Olahraga',
-    min: 6.0,
-    max: 8.5,
+    tokopedia: { min: 6.0, max: 8.5 },
+    shopee:    { min: 5.5, max: 8.0 },
+    tiktok:    { min: 6.0, max: 8.0 },
   },
   fashion: {
     label: 'Fashion',
-    min: 2.5,
-    max: 8.5,
+    tokopedia: { min: 2.5, max: 8.5 },
+    shopee:    { min: 2.5, max: 8.0 },
+    tiktok:    { min: 5.0, max: 8.0 },
   },
   makanan_minuman: {
     label: 'Makanan & Minuman',
-    min: 4.0,
-    max: 8.5,
+    tokopedia: { min: 4.0, max: 8.5 },
+    shopee:    { min: 2.5, max: 6.5 },
+    tiktok:    { min: 4.0, max: 6.97 },
   },
   kecantikan: {
     label: 'Kecantikan',
-    min: 4.0,
-    max: 8.5,
+    tokopedia: { min: 4.0, max: 8.5 },
+    shopee:    { min: 5.5, max: 8.0 },
+    tiktok:    { min: 6.0, max: 8.0 },
   },
   hiburan: {
     label: 'Hiburan',
-    min: 6.0,
-    max: 8.5,
+    tokopedia: { min: 6.0, max: 8.5 },
+    shopee:    { min: 4.0, max: 7.5 },
+    tiktok:    { min: 4.0, max: 8.0 },
   },
 }
 
-export function getCommissionRange(categoryKey) {
-  const data = CATEGORY_COMMISSION_RANGES[categoryKey]
+export function getCommissionRange(categoryKey, platform = 'tokopedia') {
+  const data = PLATFORM_COMMISSION[categoryKey]
 
-  if (!data) {
+  if (!data || !data[platform]) {
     return {
       label: 'Kategori tidak diketahui',
       rangeText: 'Belum tersedia',
-      disclaimer:
-        'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
+      disclaimer: 'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
     }
   }
 
   return {
     label: data.label,
-    rangeText: `${data.min}% – ${data.max}%`,
-    disclaimer:
-      'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
+    rangeText: `${data[platform].min}% – ${data[platform].max}%`,
+    disclaimer: 'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
   }
 }

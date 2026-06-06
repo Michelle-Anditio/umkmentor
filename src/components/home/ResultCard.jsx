@@ -1,6 +1,6 @@
 import { getCommissionRange } from '../../utils/commission'
 
-export default function ResultCard({ analysisState, resultData, productData, sentimentData, selectedPlatforms }) {
+export default function ResultCard({ analysisState, resultData, productData, sentimentData }) {
   const scoreBadgeStyle =
     analysisState === 'loading'
       ? { background: 'rgba(201,136,42,0.1)', color: 'var(--accent2)' }
@@ -60,10 +60,12 @@ export default function ResultCard({ analysisState, resultData, productData, sen
             <span className="metric-label">Median Harga Kategori</span>
             <span className="metric-value">Rp {productData.harga_median_cat?.toLocaleString('id')}</span>
           </div>
-          <div className="metric-row">
-            <span className="metric-label">Tingkat Laku Kategori</span>
-            <span className="metric-value">{productData.cat_laku_rate}% produk laku</span>
-          </div>
+          {productData.cat_laku_rate !== undefined && (
+            <div className="metric-row">
+              <span className="metric-label">Tingkat Laku Kategori</span>
+              <span className="metric-value">{productData.cat_laku_rate}% produk laku</span>
+            </div>
+          )}
 
           {sentimentData && (
             <>
@@ -89,35 +91,6 @@ export default function ResultCard({ analysisState, resultData, productData, sen
                 </div>
               )}
             </>
-          )}
-
-          {resultData.kategori && (
-            <div style={{ marginTop: '12px', marginBottom: '12px' }}>
-              <div style={{ fontSize: '12px', color: 'var(--muted-dark)', marginBottom: '8px', fontWeight: '600' }}>
-                Range Komisi
-              </div>
-
-              {(() => {
-                const commission = getCommissionRange(resultData.kategori)
-
-                return (
-                  <div style={{ marginBottom: '8px', padding: '10px', background: 'rgba(255,255,255,0.04)', borderRadius: '8px', fontSize: '12px' }}>
-                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>
-                      {commission.label}
-                    </div>
-
-                    <div className="metric-row" style={{ marginBottom: '2px' }}>
-                      <span className="metric-label">Estimasi Fee</span>
-                      <span className="metric-value warn">{commission.rangeText}</span>
-                    </div>
-
-                    <p style={{ margin: '8px 0 0', color: 'var(--muted-dark)', fontSize: '11px', lineHeight: '1.5' }}>
-                      {commission.disclaimer}
-                    </p>
-                  </div>
-                )
-              })()}
-            </div>
           )}
 
           {productData.saran?.length > 0 && (

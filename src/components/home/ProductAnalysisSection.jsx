@@ -1,18 +1,14 @@
 import ResultCard from './ResultCard'
 import { KATEGORI_OPTIONS } from '../../constants/categories'
-import { PLATFORM_OPTIONS } from '../../constants/platforms'
 
 export default function ProductAnalysisSection({
   formData,
   setFormData,
-  platforms,
-  togglePlatform,
   runAnalysis,
   analysisState,
   resultData,
   productData,
   sentimentData,
-  selectedPlatforms,
 }) {
   return (
     <section id="analisis" aria-labelledby="analisis-title">
@@ -31,27 +27,15 @@ export default function ProductAnalysisSection({
               </select>
             </div>
 
-            <div className="form-grid-2">
-              <div className="form-group">
-                <label htmlFor="input-harga">Harga Jual Target</label>
-                <input
-                  id="input-harga"
-                  type="text"
-                  placeholder="Rp 0"
-                  value={formData.harga}
-                  onChange={e => setFormData(f => ({ ...f, harga: e.target.value }))}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="input-modal">Modal Awal <span className="label-optional">(opsional)</span></label>
-                <input
-                  id="input-modal"
-                  type="text"
-                  placeholder="Rp 0"
-                  value={formData.modal}
-                  onChange={e => setFormData(f => ({ ...f, modal: e.target.value }))}
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="input-harga">Harga Jual Target</label>
+              <input
+                id="input-harga"
+                type="text"
+                placeholder="Rp 0"
+                value={formData.harga}
+                onChange={e => setFormData(f => ({ ...f, harga: e.target.value }))}
+              />
             </div>
 
             <div className="form-grid-2">
@@ -97,45 +81,25 @@ export default function ProductAnalysisSection({
             </div>
 
             <div className="form-grid-2">
-              <label
-                className={`platform-opt${formData.is_official ? ' selected' : ''}`}
-                style={{ cursor: 'pointer', userSelect: 'none' }}
-              >
+              <label className={`platform-opt${formData.is_official ? ' selected' : ''}`}>
                 <input
                   type="checkbox"
                   checked={formData.is_official}
                   onChange={e => setFormData(f => ({ ...f, is_official: e.target.checked }))}
-                  style={{ display: 'none' }}
+                  className="sr-only"
                 />
                 🏢 Official Store
               </label>
-
-              <label
-                className={`platform-opt${formData.is_topads ? ' selected' : ''}`}
-                style={{ cursor: 'pointer', userSelect: 'none' }}
-              >
+              <label className={`platform-opt${formData.is_topads ? ' selected' : ''}`}>
                 <input
                   type="checkbox"
                   checked={formData.is_topads}
                   onChange={e => setFormData(f => ({ ...f, is_topads: e.target.checked }))}
-                  style={{ display: 'none' }}
+                  className="sr-only"
                 />
                 📢 TopAds
               </label>
             </div>
-
-            <fieldset className="form-group">
-              <legend>Platform yang Diminati <span className="label-optional">(untuk simulasi komisi)</span></legend>
-              <div className="platform-options">
-                {PLATFORM_OPTIONS.map(platform => (
-                  <label key={platform.key} className={`platform-opt${platforms[platform.key] ? ' selected' : ''}`} onClick={() => togglePlatform(platform.key)}>
-                    <input type="checkbox" name="platform" value={platform.key} checked={platforms[platform.key]} onChange={() => {}} className="sr-only" />
-                    <img src={platform.icon} alt={platform.label} width="24" height="24" />
-                    {platform.label}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
 
             <div className="form-group">
               <label htmlFor="input-deskripsi">Ceritakan Produkmu <span className="label-optional">(opsional)</span></label>
@@ -144,7 +108,7 @@ export default function ProductAnalysisSection({
                 placeholder="Keunggulan produk, bahan baku, dll..."
                 value={formData.deskripsi}
                 onChange={e => setFormData(f => ({ ...f, deskripsi: e.target.value }))}
-              ></textarea>
+              />
             </div>
 
             <button className="submit-btn" type="button" onClick={runAnalysis}>
@@ -158,7 +122,6 @@ export default function ProductAnalysisSection({
               resultData={resultData}
               productData={productData}
               sentimentData={sentimentData}
-              selectedPlatforms={selectedPlatforms}
             />
           </aside>
         </div>

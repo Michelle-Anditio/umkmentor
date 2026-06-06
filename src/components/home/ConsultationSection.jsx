@@ -1,11 +1,17 @@
 const consultationCards = [
   {
     className: 'konsul-ai',
-    tag: '🤖 Rekomendasi AI',
+    tag: 'Rekomendasi AI',
     icon: '⚡',
     title: 'Konsultasi AI',
     desc: 'Analisis instan berbasis 11.700+ data produk e-commerce Indonesia. Hasil dalam hitungan detik.',
-    features: ['Prediksi potensi produk (86% akurasi)', 'Simulasi harga & komisi platform', 'Rekomendasi platform terbaik', 'Insight kompetitor', 'Analisis sentimen review'],
+    features: [
+      'Prediksi potensi produk',
+      'Simulasi profit & marketplace fee',
+      'Insight kategori produk',
+      'Analisis sentimen review',
+      'Rekomendasi strategi berbasis AI'
+    ],
     href: '#analisis',
     cta: 'Mulai Gratis  ',
   },
