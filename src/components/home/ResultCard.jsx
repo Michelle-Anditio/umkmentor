@@ -70,7 +70,7 @@ export default function ResultCard({ analysisState, resultData, productData, sen
           {sentimentData && (
             <>
               <div className="metric-row">
-                <span className="metric-label">Sentimen Review</span>
+                <span className="metric-label">Sentimen Ulasan</span>
                 <span className={`metric-value ${sentimentData.positive >= 50 ? 'good' : sentimentData.negative >= 50 ? 'bad' : 'warn'}`}>
                   {sentimentData.positive}% Positif
                 </span>
@@ -81,9 +81,9 @@ export default function ResultCard({ analysisState, resultData, productData, sen
                 <div className="sent-neg" style={{ width: `${sentimentData.negative}%` }}></div>
               </div>
               <div style={{ display: 'flex', gap: '12px', fontSize: '11px', marginBottom: '12px', flexWrap: 'wrap' }}>
-                <span style={{ color: 'var(--green)' }}>● {sentimentData.positive}% Positif</span>
-                <span style={{ color: 'var(--accent2)' }}>● {sentimentData.neutral}% Netral</span>
-                <span style={{ color: '#EF4444' }}>● {sentimentData.negative}% Negatif</span>
+                <span style={{ color: 'var(--sentiment-positive)' }}>● {sentimentData.positive}% Positif</span>
+                <span style={{ color: 'var(--sentiment-neutral)' }}>● {sentimentData.neutral}% Netral</span>
+                <span style={{ color: 'var(--sentiment-negative)' }}>● {sentimentData.negative}% Negatif</span>
               </div>
               {sentimentData.emotion && (
                 <div style={{ fontSize: '12px', color: 'var(--muted-dark)', marginBottom: '12px' }}>

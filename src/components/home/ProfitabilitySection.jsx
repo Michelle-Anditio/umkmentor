@@ -135,13 +135,13 @@ export default function ProfitabilitySection() {
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Fee</td>
+                          <td>Biaya Admin (%)</td>
                           {results.computed.map(r => (
                             <td key={r.key} className="warn">{r.min}%–{r.max}%</td>
                           ))}
                         </tr>
                         <tr>
-                          <td>Est. Fee (Rp)</td>
+                          <td>Est. Biaya Admin</td>
                           {results.computed.map(r => (
                             <td key={r.key} className="warn">{fmt(r.feeMin)} – {fmt(r.feeMax)}</td>
                           ))}
@@ -167,7 +167,7 @@ export default function ProfitabilitySection() {
                   </div>
 
                   <p style={{ fontSize: '11px', color: 'var(--muted-light)', marginTop: '12px', lineHeight: '1.6' }}>
-                    * Estimasi fee berdasarkan range kategori. Tokopedia berdasarkan data training, Shopee & TikTok Shop berdasarkan informasi publik. Komisi aktual dapat berbeda.
+                    * Estimasi biaya administrasi berdasarkan rentang kategori. Tokopedia berdasarkan data riset, Shopee & TikTok Shop berdasarkan informasi publik. Biaya administrasi aktual dapat berbeda.
                   </p>
                 </>
               )}

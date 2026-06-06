@@ -1,7 +1,120 @@
 import { useState } from 'react'
 
+const tabData = {
+  potensi: {
+    detail: {
+      metrics: [
+        { label: 'Kategori Produk', value: 'Kecantikan', cls: '' },
+        { label: 'Peluang Laku (Model AI)', value: '85% Berpotensi Laku', cls: 'good' },
+        { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
+        { label: 'Tingkat Laku Kategori', value: '72% produk laku', cls: 'good' },
+        { label: 'Tingkat Risiko Model AI', value: 'Rendah', cls: 'good' },
+        { label: 'Faktor Iklan (TopAds)', value: 'Meningkatkan visibilitas', cls: '' },
+        { label: 'Faktor Official Store', value: 'Meningkatkan ulasan positif', cls: '' }
+      ]
+    },
+    saran: {
+      points: [
+        'Tetapkan harga jual mendekati median harga kategori (sekitar Rp52.000) agar dinilai wajar oleh pasar.',
+        'Gunakan status Official Store untuk mendapatkan peningkatan peluang laku secara umum.',
+        'Aktifkan iklan (TopAds) untuk membantu visibilitas awal produk baru Anda di marketplace.',
+        'Mulai dengan target stok moderat guna menguji penerimaan awal pembeli.'
+      ]
+    }
+  },
+  harga: {
+    detail: {
+      metrics: [
+        { label: 'Harga Jual', value: 'Rp 55.000', cls: '' },
+        { label: 'HPP Produk', value: 'Rp 20.000 (36.4%)', cls: 'bad' },
+        { label: 'Biaya Admin Shopee', value: 'Rp 3.575 (6.5%)', cls: 'bad' },
+        { label: 'Biaya Pengemasan', value: 'Rp 3.000 (5.5%)', cls: 'bad' },
+        { label: 'Alokasi Marketing', value: 'Rp 5.000 (9.1%)', cls: '' },
+        { label: 'Admin Lainnya', value: 'Rp 1.500 (2.7%)', cls: '' },
+        { label: 'Profit Bersih', value: 'Rp 28.425 (51.7%)', cls: 'good' }
+      ]
+    },
+    saran: {
+      points: [
+        'Naikkan harga jual ke Rp 59.000 jika ingin menutupi biaya diskon campaign 10% agar profit tetap aman.',
+        'Negosiasikan harga grosir dengan supplier untuk mencoba menekan HPP ke Rp 18.000.',
+        'Sederhanakan metode pengemasan agar biaya packaging bisa didorong ke bawah Rp 2.000 per paket.',
+        'Manfaatkan skema gratis ongkir untuk merangsang volume pesanan tanpa memotong laba langsung.'
+      ]
+    }
+  },
+  kompetitor: {
+    detail: {
+      metrics: [
+        { label: 'Kategori Analisis', value: 'Kecantikan', cls: '' },
+        { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
+        { label: 'Tingkat Laku Kategori', value: '72% produk laku', cls: 'good' },
+        { label: 'Tingkat Risiko Model AI', value: 'Rendah', cls: 'good' },
+        { label: 'Faktor Penentu Laku', value: 'Akurasi Harga & Ulasan', cls: 'good' },
+        { label: 'Rekomendasi Margin', value: 'Minimal 45%', cls: '' }
+      ]
+    },
+    saran: {
+      points: [
+        'Gunakan rentang harga di sekitar median kategori agar produk bersaing di pasar.',
+        'Hindari perang harga ekstrem dan fokuslah menjaga kualitas ulasan positif dari pembeli.',
+        'Perkuat material branding pada halaman toko dan kemasan produk untuk membenarkan nilai harga jual.',
+        'Mulai dengan pengiriman teratur dan kendali stok yang baik agar tidak kelebihan pasokan di awal.'
+      ]
+    }
+  },
+  sentimen: {
+    detail: {
+      metrics: [
+        { label: 'Hasil Sentimen', value: '70% Sentimen Positif', cls: 'good' },
+        { label: 'Hasil Netral', value: '20% Sentimen Netral', cls: 'warn' },
+        { label: 'Hasil Negatif', value: '10% Sentimen Negatif', cls: 'bad' },
+        { label: 'Aspek Terkuat', value: 'Kesesuaian Produk & Khasiat', cls: 'good' },
+        { label: 'Aspek Terlemah', value: 'Kecepatan Respons & Kemasan', cls: 'bad' }
+      ]
+    },
+    saran: {
+      points: [
+        'Tampilkan keunggulan manfaat produk yang paling disukai pembeli sebagai promosi utama.',
+        'Gunakan pelindung kemasan tambahan untuk mencegah bocor atau kerusakan selama pengiriman.',
+        'Dahulukan pengemasan cepat dan serah terima ke kurir di bawah jam batas harian.',
+        'Berikan respons tanya-jawab chat dengan pesan template yang ramah dan solutif.'
+      ]
+    }
+  },
+  platform: {
+    detail: {
+      metrics: [
+        { label: 'Shopee (Biaya Admin 6.5%)', value: 'Profit Rp 28.425 (Margin 51.7%)', cls: '' },
+        { label: 'Tokopedia (Biaya Admin 5.0%)', value: 'Profit Rp 29.250 (Margin 53.2%)', cls: 'good' },
+        { label: 'TikTok Shop (Biaya Admin 8.0%)', value: 'Profit Rp 27.600 (Margin 50.2%)', cls: 'warn' }
+      ]
+    },
+    saran: {
+      points: [
+        'Pilih platform dengan estimasi profit bersih tertinggi sebagai prioritas awal.',
+        'Gunakan hasil simulasi ini sebagai dasar perbandingan biaya, bukan prediksi penjualan.',
+        'Pertimbangkan juga faktor non-biaya administrasi seperti trafik, promo, dan target pembeli sebelum mengambil keputusan akhir.',
+        'Validasi hasil dengan uji listing kecil sebelum menambah stok besar.'
+      ],
+      disclaimer: 'Rekomendasi platform dihitung dari simulasi biaya administrasi, bukan prediksi trafik atau jumlah penjualan aktual.'
+    }
+  }
+}
+
+function getFeatureKey(title = '') {
+  const t = title.toLowerCase()
+  if (t.includes('potensi')) return 'potensi'
+  if (t.includes('harga') || t.includes('simulasi')) return 'harga'
+  if (t.includes('kompetitor') || t.includes('market') || t.includes('pasar')) return 'kompetitor'
+  if (t.includes('sentimen')) return 'sentimen'
+  return 'platform'
+}
+
 export default function FeaturePreview({ data }) {
   const [activeTab, setActiveTab] = useState('overview')
+  const featureKey = getFeatureKey(data.title)
+  const currentTabInfo = tabData[featureKey]
 
   return (
     <article className="preview-card" aria-live="polite">
@@ -22,34 +135,81 @@ export default function FeaturePreview({ data }) {
         <div className="preview-subtitle">{data.subtitle}</div>
       </header>
 
-      {data.isSentimen && (
+      {/* OVERVIEW TAB CONTENT */}
+      {activeTab === 'overview' && (
         <>
-          <div className="sentiment-bar">
-            <div className="sent-pos"></div>
-            <div className="sent-neu"></div>
-            <div className="sent-neg"></div>
-          </div>
-          <div style={{ display: 'flex', gap: '16px', fontSize: '11px', marginBottom: '16px' }}>
-            <span style={{ color: 'var(--green)' }}>● 70% Positif</span>
-            <span style={{ color: 'var(--accent2)' }}>● 20% Netral</span>
-            <span style={{ color: '#EF4444' }}>● 10% Negatif</span>
-          </div>
+          {data.isSentimen && (() => {
+            const sentiment = data.sentimentData || { positive: 70, neutral: 20, negative: 10 }
+            return (
+              <>
+                <div className="sentiment-bar">
+                  <div className="sent-pos" style={{ width: `${sentiment.positive}%`, flex: 'none' }}></div>
+                  <div className="sent-neu" style={{ width: `${sentiment.neutral}%`, flex: 'none' }}></div>
+                  <div className="sent-neg" style={{ width: `${sentiment.negative}%`, flex: 'none' }}></div>
+                </div>
+                <div style={{ display: 'flex', gap: '16px', fontSize: '11px', marginBottom: '16px' }}>
+                  <span style={{ color: 'var(--sentiment-positive)' }}>● {sentiment.positive}% Positif</span>
+                  <span style={{ color: 'var(--sentiment-neutral)' }}>● {sentiment.neutral}% Netral</span>
+                  <span style={{ color: 'var(--sentiment-negative)' }}>● {sentiment.negative}% Negatif</span>
+                </div>
+              </>
+            )
+          })()}
+
+          <dl className="metrics-list">
+            {data.metrics.map((metric, i) => (
+              <div className="metric-row" key={i}>
+                <dt className="metric-label">{metric.label}</dt>
+                <dd className={`metric-value${metric.cls ? ' ' + metric.cls : ''}`}>{metric.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <aside className="insight-box">
+            <p className="insight-title">💡 Insight AI</p>
+            <p className="insight-text">{data.insight}</p>
+          </aside>
         </>
       )}
 
-      <dl className="metrics-list">
-        {data.metrics.map((metric, i) => (
-          <div className="metric-row" key={i}>
-            <dt className="metric-label">{metric.label}</dt>
-            <dd className={`metric-value${metric.cls ? ' ' + metric.cls : ''}`}>{metric.value}</dd>
-          </div>
-        ))}
-      </dl>
+      {/* DETAIL TAB CONTENT */}
+      {activeTab === 'detail' && currentTabInfo && (
+        <dl className="metrics-list">
+          {currentTabInfo.detail.metrics.map((metric, i) => {
+            let val = metric.value
+            if (featureKey === 'sentimen') {
+              const sentiment = data.sentimentData || { positive: 70, neutral: 20, negative: 10 }
+              if (metric.label === 'Hasil Sentimen') val = `${sentiment.positive}% Sentimen Positif`
+              else if (metric.label === 'Hasil Netral') val = `${sentiment.neutral}% Sentimen Netral`
+              else if (metric.label === 'Hasil Negatif') val = `${sentiment.negative}% Sentimen Negatif`
+            }
+            return (
+              <div className="metric-row" key={i}>
+                <dt className="metric-label">{metric.label}</dt>
+                <dd className={`metric-value${metric.cls ? ' ' + metric.cls : ''}`}>{val}</dd>
+              </div>
+            )
+          })}
+        </dl>
+      )}
 
-      <aside className="insight-box">
-        <p className="insight-title">💡 Insight AI</p>
-        <p className="insight-text">{data.insight}</p>
-      </aside>
+      {/* SARAN AI TAB CONTENT */}
+      {activeTab === 'saran' && currentTabInfo && (
+        <>
+          <div className="saran-list" style={{ display: 'flex', flexDirection: 'column', gap: '12px', margin: '8px 0 20px 0' }}>
+            {currentTabInfo.saran.points.map((point, i) => (
+              <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', fontSize: '13px', lineHeight: '1.5', color: 'var(--black)' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '14px', marginTop: '-1px' }}>✦</span>
+                <span>{point}</span>
+              </div>
+            ))}
+          </div>
+          <p className="saran-disclaimer" style={{ fontSize: '11px', color: 'var(--muted-light)', fontStyle: 'italic', borderTop: '1px solid var(--border-light)', paddingTop: '10px', marginTop: '10px', textAlign: 'center' }}>
+            "{currentTabInfo.saran.disclaimer || "Saran dibuat berdasarkan pola data historis dan hanya sebagai referensi."}"
+          </p>
+        </>
+      )}
     </article>
   )
 }
+

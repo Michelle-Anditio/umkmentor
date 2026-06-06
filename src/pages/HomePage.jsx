@@ -13,6 +13,7 @@ import ConsultationSection from '../components/home/ConsultationSection'
 import ProductAnalysisSection from '../components/home/ProductAnalysisSection'
 import ExpertsSection from '../components/home/ExpertsSection'
 import Footer from '../components/home/Footer'
+import AboutModal from '../components/home/AboutModal'
 import '../css/style.css'
 
 const initialFormData = {
@@ -37,6 +38,7 @@ export default function HomePage() {
   const [resultData, setResultData] = useState(null)
   const [sentimentData, setSentimentData] = useState(null)
   const [productData, setProductData] = useState(null)
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => setUser(currentUser))
@@ -120,7 +122,9 @@ export default function HomePage() {
         <ExpertsSection />
       </main>
 
-      <Footer />
+      <Footer onAboutClick={() => setIsAboutOpen(true)} />
+
+      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
     </>
   )
 }

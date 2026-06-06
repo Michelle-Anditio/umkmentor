@@ -50,13 +50,13 @@ export function getCommissionRange(categoryKey, platform = 'tokopedia') {
     return {
       label: 'Kategori tidak diketahui',
       rangeText: 'Belum tersedia',
-      disclaimer: 'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
+      disclaimer: 'Estimasi biaya administrasi berdasarkan range kategori. Biaya administrasi aktual bisa berbeda tergantung sub-kategori produk.',
     }
   }
 
   return {
     label: data.label,
     rangeText: `${data[platform].min}% – ${data[platform].max}%`,
-    disclaimer: 'Estimasi fee berdasarkan range kategori. Komisi aktual bisa berbeda tergantung sub-kategori produk.',
+    disclaimer: 'Estimasi biaya administrasi berdasarkan range kategori. Biaya administrasi aktual bisa berbeda tergantung sub-kategori produk.',
   }
 }

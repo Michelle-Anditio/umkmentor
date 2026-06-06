@@ -23,6 +23,10 @@
   --shadow-sm: 0 2px 12px rgba(0,0,0,0.08);
   --shadow-md: 0 8px 32px rgba(0,0,0,0.12);
   --shadow-lg: 0 20px 60px rgba(0,0,0,0.18);
+
+  --sentiment-positive: var(--green);
+  --sentiment-neutral: #FACC15;
+  --sentiment-negative: #EF4444;
 }
 
 html { scroll-behavior: smooth; }
@@ -633,9 +637,9 @@ section { padding: 100px 48px; }
   overflow: hidden; margin: 8px 0;
 }
 
-.sent-pos { background: var(--green); flex: 7; }
-.sent-neu { background: var(--accent2); flex: 2; }
-.sent-neg { background: #EF4444; flex: 1; }
+.sent-pos { background: var(--sentiment-positive); flex: 7; }
+.sent-neu { background: var(--sentiment-neutral); flex: 2; }
+.sent-neg { background: var(--sentiment-negative); flex: 1; }
 
 /* ===== SIMULATOR — HITAM ===== */
 
@@ -1176,4 +1180,495 @@ footer {
   .form-grid-2 { grid-template-columns: 1fr; }
 
   .hero-stats   { flex-direction: column; gap: 20px; }
+}
+
+/* ==========================================================================
+   HOMEPAGE COLOR FLOW CLEANUP & CONTRAST OVERRIDES
+   ========================================================================== */
+
+/* --- SECTION 1: HERO (Light/White Context) --- */
+.hero {
+  background: var(--white) !important;
+  color: var(--black) !important;
+}
+
+.hero-bg {
+  background:
+    radial-gradient(ellipse 55% 55% at 75% 50%, rgba(232, 82, 10, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 50% at 15% 85%, rgba(201, 136, 42, 0.02) 0%, transparent 60%) !important;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px) !important;
+  mask-image: radial-gradient(ellipse at center, white 20%, transparent 75%) !important;
+}
+
+.hero-title {
+  color: var(--black) !important;
+}
+
+.hero-desc {
+  color: var(--muted-light) !important;
+}
+
+.btn-secondary {
+  color: var(--black) !important;
+  border-color: var(--border-light) !important;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+.hero-stats {
+  border-top-color: var(--border-light) !important;
+}
+
+.stat-num {
+  color: var(--black) !important;
+}
+
+.stat-label {
+  color: var(--muted-light) !important;
+}
+
+/* --- SECTION 3: CARA KERJA (Black/Dark Context) --- */
+#cara-kerja {
+  background: var(--black) !important;
+  color: var(--white) !important;
+}
+
+#cara-kerja .section-title {
+  color: var(--white) !important;
+}
+
+#cara-kerja .section-desc {
+  color: var(--muted-dark) !important;
+}
+
+#cara-kerja .steps-grid {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+#cara-kerja .step-card {
+  background: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  transition: all .3s ease !important;
+}
+
+#cara-kerja .step-num {
+  color: rgba(255, 255, 255, 0.15) !important;
+  transition: all .3s ease !important;
+}
+
+#cara-kerja .step-icon {
+  background: rgba(255, 255, 255, 0.05) !important;
+  transition: all .3s ease !important;
+}
+
+#cara-kerja .step-title {
+  color: var(--white) !important;
+  transition: all .3s ease !important;
+}
+
+#cara-kerja .step-desc {
+  color: var(--muted-dark) !important;
+  transition: all .3s ease !important;
+}
+
+#cara-kerja .step-card:hover {
+  background: #FAFAFA !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1) !important;
+}
+
+#cara-kerja .step-card:hover .step-num  { color: var(--accent) !important; }
+#cara-kerja .step-card:hover .step-title { color: var(--black) !important; }
+#cara-kerja .step-card:hover .step-desc  { color: var(--muted-light) !important; }
+#cara-kerja .step-card:hover .step-icon  { background: rgba(0, 0, 0, 0.05) !important; }
+
+/* --- SECTION 4: FITUR (White/Light Context) --- */
+#fitur {
+  background: var(--white) !important;
+  color: var(--black) !important;
+}
+
+#fitur .section-title {
+  color: var(--black) !important;
+}
+
+#fitur .section-desc {
+  color: var(--muted-light) !important;
+}
+
+#fitur .feature-title {
+  color: var(--black) !important;
+}
+
+#fitur .feature-desc {
+  color: var(--muted-light) !important;
+}
+
+#fitur .feature-icon-wrap {
+  background: rgba(0, 0, 0, 0.04) !important;
+  color: var(--black) !important;
+}
+
+#fitur .feature-item:hover {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+#fitur .feature-item.active {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: var(--accent) !important;
+}
+
+#fitur .feature-item.active .feature-icon-wrap {
+  background: var(--accent) !important;
+  color: var(--white) !important;
+}
+
+#fitur .preview-card {
+  background: var(--white) !important;
+  border-color: var(--border-light) !important;
+}
+
+#fitur .tab-nav {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: var(--border-light) !important;
+}
+
+#fitur .tab-btn {
+  color: var(--muted-light) !important;
+}
+
+#fitur .tab-btn.active {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+#fitur .preview-title {
+  color: var(--black) !important;
+}
+
+#fitur .preview-subtitle {
+  color: var(--muted-light) !important;
+}
+
+#fitur .metric-row {
+  border-bottom-color: var(--border-light) !important;
+}
+
+#fitur .metric-label {
+  color: var(--muted-light) !important;
+}
+
+#fitur .metric-value:not(.good):not(.warn):not(.bad) {
+  color: var(--black) !important;
+}
+
+#fitur .insight-box {
+  background: rgba(232, 82, 10, 0.04) !important;
+  border-color: rgba(232, 82, 10, 0.1) !important;
+}
+
+#fitur .insight-text {
+  color: var(--black) !important;
+}
+
+/* --- SECTION 6: SIMULATOR (Black/Dark Context) --- */
+#simulator {
+  background: var(--black) !important;
+  color: var(--white) !important;
+}
+
+#simulator .section-title {
+  color: var(--white) !important;
+}
+
+#simulator .section-desc {
+  color: var(--muted-dark) !important;
+}
+
+/* --- SECTION 7: EXPERTS (White/Light Context) --- */
+#pakar {
+  background: var(--white) !important;
+  color: var(--black) !important;
+}
+
+#pakar .section-title {
+  color: var(--black) !important;
+}
+
+#pakar .section-desc {
+  color: var(--muted-light) !important;
+}
+
+/* --- HERO FLOATING BADGES OVERRIDES --- */
+.floating-badge {
+  background: #161616 !important;
+  border: 1px solid rgba(232, 82, 10, 0.3) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
+.badge-1 {
+  color: var(--green) !important;
+}
+
+.badge-2 {
+  color: var(--accent) !important;
+}
+
+/* --- STEP 02 AI SPARKLE ICON OVERRIDE --- */
+#cara-kerja .step-card:nth-child(2) .step-icon {
+  color: #4B90FF !important;
+}
+
+/* --- KONSULTASI AI SPARKLE ICON OVERRIDE --- */
+.konsul-ai .konsul-icon {
+  color: #4B90FF !important;
+}
+
+/* --- FITUR PREVIEW CARD & INSIGHT BOX ELEVATION OVERRIDES --- */
+#fitur .preview-card {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05) !important;
+}
+
+#fitur .metric-row {
+  border-bottom-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+#fitur .insight-box {
+  border-color: rgba(232, 82, 10, 0.22) !important;
+  box-shadow: 0 4px 12px rgba(232, 82, 10, 0.04) !important;
+}
+/* ===== ABOUT UMKMentor MODAL ===== */
+
+.about-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.about-modal-container {
+  position: relative;
+  width: min(920px, 94vw);
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  padding: 28px 32px 22px;
+  color: #111;
+  overflow: visible;
+}
+
+.about-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #9CA3AF;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.about-modal-close:hover {
+  color: #111;
+}
+
+.about-modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.about-modal-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: #111;
+}
+
+.about-modal-subtitle {
+  margin: 0 0 10px;
+  font-size: 15px;
+  color: #6B7280;
+  line-height: 1.4;
+}
+
+.about-capstone-group {
+  line-height: 1.3;
+}
+
+.about-team-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: #111;
+}
+
+.about-capstone-info {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #6B7280;
+}
+
+.about-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.about-section-heading {
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #4B5563;
+}
+
+.about-members-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.about-member-card {
+  min-height: 200px;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 14px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  transition: all 0.2s ease;
+}
+
+.about-member-card:hover {
+  transform: translateY(-2px);
+  background: #F3F4F6;
+  border-color: #D1D5DB;
+}
+
+.about-member-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+
+  color: var(--accent);
+  border: 1px solid rgba(232, 82, 10, 0.25);
+  background: rgba(232, 82, 10, 0.05);
+}
+
+.about-member-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #111;
+}
+
+.about-member-role {
+  margin: 4px 0 0;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #6B7280;
+}
+
+.about-member-links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.find-me-label {
+  font-size: 10px;
+  color: #9CA3AF;
+}
+
+.linkedin-link {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.linkedin-link:hover {
+  text-decoration: underline;
+}
+
+.about-modal-footer {
+  border-top: 1px solid #E5E7EB;
+  padding-top: 14px;
+  margin-top: 4px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  text-align: center;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.about-stack-line {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #6B7280;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .about-modal-container {
+    width: 94vw;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 24px 18px;
+  }
+
+  .about-members-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-member-card {
+    min-height: 220px;
+  }
 }
