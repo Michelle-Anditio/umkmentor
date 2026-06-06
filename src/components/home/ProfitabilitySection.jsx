@@ -11,11 +11,18 @@ export default function ProfitabilitySection() {
   const [results, setResults] = useState(null)
 
   const togglePlatform = key => {
-    setSelectedPlatforms(prev => {
-      if (prev.includes(key)) return prev.filter(k => k !== key)
-      if (prev.length >= 2) { alert('Maksimal 2 marketplace!'); return prev
+    setSelectedPlatforms((prev = []) => {
+      if (prev.includes(key)) {
+        return prev.filter(k => k !== key)
+      }
+  
+      if (prev.length >= 2) {
+        alert('Maksimal 2 marketplace!')
+        return prev
+      }
+  
       return [...prev, key]
-    }})
+    })
   }
 
   const calculate = () => {
@@ -79,7 +86,7 @@ export default function ProfitabilitySection() {
                   <button
                     type="button"
                     key={p.key}
-                    className={`platform-opt${selectedPlatforms.includes(p.key) ? ' selected' : ''}`}
+                    className={`platform-opt${(selectedPlatforms || []).includes(p.key) ? ' selected' : ''}`}
                     onClick={() => togglePlatform(p.key)}
                   >
                     <img src={p.icon} alt={p.label} width="24" height="24" />
