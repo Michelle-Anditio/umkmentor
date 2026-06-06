@@ -99,7 +99,7 @@ export default function ProfilePage() {
   )
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0D0D0D', color: '#F9F9F7', fontFamily: "'Instrument Sans', sans-serif" }}>
+    <div className="profile-page-wrapper">
 
     {/* Navbar */}
     <header className="home-header">
@@ -148,7 +148,7 @@ export default function ProfilePage() {
 
             {/* Edit Profil */}
             <div className="profile-card">
-              <h2 className="profile-card-title">Edit Profil</h2>
+              <h2 className="profile-card-title">Informasi Akun</h2>
               <form onSubmit={handleSave}>
                 <div className="profile-field">
                   <label>Nama Lengkap</label>
@@ -185,7 +185,7 @@ export default function ProfilePage() {
                 className="pwd-toggle"
                 onClick={() => { setShowPwd(!showPwd); setPwdError(''); setPwdState('idle') }}
               >
-                <h2 className="pwd-toggle-title">Ubah Password</h2>
+                <h2 className="pwd-toggle-title">Keamanan Akun</h2>
                 <span className={`pwd-arrow${showPwd ? ' open' : ''}`}>▾</span>
               </div>
 
@@ -245,15 +245,15 @@ export default function ProfilePage() {
             <div className="stats-grid">
               <div className="stat-card accent">
                 <div className="stat-val">3</div>
-                <div className="stat-label">Analisis Produk</div>
+                <div className="stat-label">Analisis Dilakukan</div>
               </div>
               <div className="stat-card">
                 <div className="stat-val">3</div>
-                <div className="stat-label">Laporan Disimpan</div>
+                <div className="stat-label">Riwayat Analisis</div>
               </div>
               <div className="stat-card">
                 <div className="stat-val">1</div>
-                <div className="stat-label">Platform Dibandingkan</div>
+                <div className="stat-label">Perbandingan Platform</div>
               </div>
             </div>
 
@@ -261,10 +261,10 @@ export default function ProfilePage() {
             <div className="paket-card">
               <div>
                 <div className="paket-name">Paket Gratis</div>
-                <div className="paket-desc">Member sejak April 2026</div>
+                <div className="paket-desc">Akses fitur dasar UMKMentor</div>
               </div>
               <div className="paket-quota">
-                <div className="quota-val">3 / 5 analisis</div>
+                <div className="quota-val">3 / 5 analisis bulan ini</div>
                 <div className="quota-bar">
                   <div className="quota-fill"></div>
                 </div>
@@ -273,7 +273,7 @@ export default function ProfilePage() {
 
             {/* Riwayat */}
             <div className="profile-card">
-              <h2 className="profile-card-title">Riwayat Analisis</h2>
+              <h2 className="profile-card-title">Riwayat Aktivitas</h2>
               <div className="riwayat-list">
                 <div className="riwayat-item">
                   <div>
@@ -285,14 +285,14 @@ export default function ProfilePage() {
                 <div className="riwayat-item">
                   <div>
                     <div className="riwayat-name">Baju Batik Modern</div>
-                    <div className="riwayat-sub">Komparasi Platform · 5 hari lalu</div>
+                    <div className="riwayat-sub">Perbandingan Platform · 5 hari lalu</div>
                   </div>
                   <span className="riwayat-badge badge-amber">Kompetitif</span>
                 </div>
                 <div className="riwayat-item">
                   <div>
                     <div className="riwayat-name">Minuman Herbal Sachet</div>
-                    <div className="riwayat-sub">Sentimen Ulasan · 1 minggu lalu</div>
+                    <div className="riwayat-sub">Analisis Sentimen · 1 minggu lalu</div>
                   </div>
                   <span className="riwayat-badge badge-blue">Dianalisis</span>
                 </div>
