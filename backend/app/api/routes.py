@@ -37,9 +37,9 @@ def predict_product(request: ProductRequest):
     return run_product_prediction(
         kategori=request.kategori,
         harga_jual=request.harga_jual,
-        harga_diskon=request.harga_diskon,
         stok=request.stok,
         is_official=request.is_official,
         rating_average=request.rating_average,
-        is_topads=request.is_topads,
+        gold_merchant=request.gold_merchant,
+        discounted_price=request.discounted_price
     )

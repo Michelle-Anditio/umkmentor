@@ -90,14 +90,14 @@ export default function ProductAnalysisSection({
                 />
                 🏢 Official Store
               </label>
-              <label className={`platform-opt${formData.is_topads ? ' selected' : ''}`}>
+              <label className={`platform-opt${formData.gold_merchant ? ' selected' : ''}`}>
                 <input
                   type="checkbox"
-                  checked={formData.is_topads}
-                  onChange={e => setFormData(f => ({ ...f, is_topads: e.target.checked }))}
+                  checked={formData.gold_merchant}
+                  onChange={e => setFormData(f => ({ ...f, gold_merchant: e.target.checked }))}
                   className="sr-only"
                 />
-                📢 TopAds
+                📢 Gold Merchant
               </label>
             </div>
 

@@ -42,11 +42,11 @@ def load_product_model() -> None:
 def run_product_prediction(
     kategori: str,
     harga_jual: int,
-    harga_diskon: int,
     stok: int,
     is_official: int,
+    gold_merchant: int,
     rating_average: float,
-    is_topads: int,
+    discounted_price: int | float | None = None,
 ) -> dict:
     if product_state.model is None:
         raise RuntimeError("Product model belum dimuat")
@@ -57,11 +57,11 @@ def run_product_prediction(
     input_dict = build_product_input(
         kategori=category_features["cat_name"],
         harga_jual=harga_jual,
-        harga_diskon=harga_diskon,
         stok=stok,
         is_official=is_official,
+        gold_merchant=gold_merchant,
         rating_average=rating_average,
-        is_topads=is_topads,
+        discounted_price=discounted_price,
         category_features=category_features,
     )
 
@@ -80,11 +80,11 @@ def run_product_prediction(
     suggestions = build_suggestions(
         kategori=category_features["cat_name"],
         harga_jual=harga_jual,
-        harga_diskon=harga_diskon,
         stok=stok,
         is_official=is_official,
+        gold_merchant=gold_merchant,
         rating_average=rating_average,
-        is_topads=is_topads,
+        discounted_price=discounted_price,
         score=score,
         category_features=category_features,
     )
@@ -167,29 +167,34 @@ def get_category_features(category_row: dict | None, category_resolved: str) -> 
 def build_product_input(
     kategori: str,
     harga_jual: int,
-    harga_diskon: int,
     stok: int,
     is_official: int,
+    gold_merchant: int,
     rating_average: float,
-    is_topads: int,
+    discounted_price: int | float | None,
     category_features: dict,
 ) -> dict:
     harga_jual = max(int(harga_jual), 0)
-    harga_diskon = max(int(harga_diskon), 0)
     stok = max(int(stok), 0)
 
     is_official = int(bool(is_official))
-    is_topads = int(bool(is_topads))
+    gold_merchant = int(bool(gold_merchant))
 
     rating_average = float(rating_average)
     rating_average = min(max(rating_average, 0), 5)
+
+    if discounted_price is not None:
+        discounted_price = float(discounted_price)
+        discounted_price = max(discounted_price, 0)
+    else:
+        discounted_price = 0.0
 
     cat_median_price = category_features["cat_median_price"]
     cat_stock_median = category_features["cat_stock_median"]
 
     discount_pct = 0.0
-    if harga_jual > 0 and 0 < harga_diskon < harga_jual:
-        discount_pct = (harga_jual - harga_diskon) / harga_jual
+    if harga_jual > 0 and 0 < discounted_price < harga_jual:
+        discount_pct = (harga_jual - discounted_price) / harga_jual
 
     has_discount = int(discount_pct > 0)
     category_key = normalize_category(kategori)
@@ -205,9 +210,10 @@ def build_product_input(
         "stock_rank_in_cat": stok / (cat_stock_median + 1),
         "stock_is_enough": int(stok >= cat_stock_median),
         "stock_price_ratio": stok / (harga_jual + 1),
-        "is_topads": is_topads,
+        "is_official": is_official,
+        "gold_merchant": gold_merchant,
         "is_jakarta": 0,
-        "trust_factor": is_official + is_topads,
+        "trust_factor": is_official + gold_merchant,
         "cat_median_price": cat_median_price,
         "cat_stock_median": cat_stock_median,
         "cat_pct_official": category_features["cat_pct_official"],
@@ -224,11 +230,11 @@ def build_product_input(
 def build_suggestions(
     kategori: str,
     harga_jual: int,
-    harga_diskon: int,
     stok: int,
     is_official: int,
+    gold_merchant: int,
     rating_average: float,
-    is_topads: int,
+    discounted_price: int | float | None,
     score: float,
     category_features: dict,
 ) -> list[str]:
@@ -237,11 +243,16 @@ def build_suggestions(
     cat_median_price = category_features["cat_median_price"]
     cat_stock_median = category_features["cat_stock_median"]
 
-    price_ratio = harga_jual / (cat_median_price + 1)
+    harga_jual = max(int(harga_jual), 0)
 
-    discount_pct = 0.0
-    if harga_jual > 0 and 0 < harga_diskon < harga_jual:
-        discount_pct = (harga_jual - harga_diskon) / harga_jual
+    if discounted_price is not None:
+        discounted_price = float(discounted_price)
+        discounted_price = max(discounted_price, 0)
+    else:
+        discounted_price = 0.0
+
+    price_ratio = harga_jual / (cat_median_price + 1)
+    has_discount = 0 < discounted_price < harga_jual
 
     if price_ratio > 2.0:
         suggestions.append(
@@ -254,9 +265,9 @@ def build_suggestions(
             f"Rp{cat_median_price:,.0f}. Pastikan margin dan kualitas tetap aman."
         )
 
-    if discount_pct == 0 and score < 60:
+    if not has_discount and score < 60:
         suggestions.append(
-            "Produk belum memiliki diskon. Coba gunakan diskon ringan untuk meningkatkan daya tarik."
+            "Produk belum memiliki harga setelah diskon. Coba gunakan diskon ringan untuk meningkatkan daya tarik."
         )
 
     if stok < cat_stock_median and score < 60:
@@ -270,14 +281,14 @@ def build_suggestions(
             "Rating produk masih perlu diperkuat. Fokus pada kualitas produk, pengiriman, dan respons review."
         )
 
-    if is_topads == 0 and score < 60:
-        suggestions.append(
-            "TopAds bisa dipertimbangkan sebagai strategi promosi, tetapi pengaruhnya pada model relatif kecil."
-        )
-
     if is_official == 0 and score < 60:
         suggestions.append(
-            "Status official store dapat membantu kepercayaan pembeli, meskipun pengaruhnya pada model tidak terlalu besar."
+            "Status Official Store dapat membantu meningkatkan kepercayaan pembeli."
+        )
+
+    if gold_merchant == 0 and score < 60:
+        suggestions.append(
+            "Status Gold Merchant dapat dipertimbangkan untuk memperkuat kredibilitas toko."
         )
 
     if not suggestions:

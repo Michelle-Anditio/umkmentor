@@ -3,11 +3,11 @@ import { API_URL } from './apiConfig'
 export async function predictProduct({
   kategori,
   harga_jual,
-  harga_diskon,
+  discounted_price,
   stok,
   is_official,
+  gold_merchant,
   rating_average,
-  is_topads,
 }) {
   const response = await fetch(`${API_URL}/predict-product`, {
     method: 'POST',
@@ -17,11 +17,11 @@ export async function predictProduct({
     body: JSON.stringify({
       kategori,
       harga_jual,
-      harga_diskon,
       stok,
       is_official,
+      gold_merchant,
       rating_average,
-      is_topads,
+      discounted_price,
     }),
   })
 

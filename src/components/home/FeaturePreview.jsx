@@ -9,7 +9,7 @@ const tabData = {
         { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
         { label: 'Tingkat Laku Kategori', value: '72% produk laku', cls: 'good' },
         { label: 'Tingkat Risiko Model AI', value: 'Rendah', cls: 'good' },
-        { label: 'Faktor Iklan (TopAds)', value: 'Meningkatkan visibilitas', cls: '' },
+        { label: 'Status Gold Merchant', value: 'Meningkatkan visibilitas', cls: '' },
         { label: 'Faktor Official Store', value: 'Meningkatkan ulasan positif', cls: '' }
       ]
     },
@@ -17,7 +17,7 @@ const tabData = {
       points: [
         'Tetapkan harga jual mendekati median harga kategori (sekitar Rp52.000) agar dinilai wajar oleh pasar.',
         'Gunakan status Official Store untuk mendapatkan peningkatan peluang laku secara umum.',
-        'Aktifkan iklan (TopAds) untuk membantu visibilitas awal produk baru Anda di marketplace.',
+        'Gunakan status Gold Merchant untuk meningkatkan kepercayaan toko.',
         'Mulai dengan target stok moderat guna menguji penerimaan awal pembeli.'
       ]
     }

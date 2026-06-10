@@ -20,9 +20,9 @@
     "fashion",
     "pertukangan"
   ],
-  "best_model": "XGB Tuned",
+  "best_model": "GB Tuned",
   "calibration": "sigmoid (CalibratedClassifierCV, cv=prefit, test_size=0.3)",
-  "test_auc": 0.7596,
+  "test_auc": 0.7446,
   "random_state": 42,
   "feature_cols": [
     "log_price",
@@ -35,9 +35,8 @@
     "stock_rank_in_cat",
     "stock_is_enough",
     "stock_price_ratio",
-    "is_topads",
-    "is_jakarta",
-    "trust_factor",
+    "is_official",
+    "gold_merchant",
     "cat_median_price",
     "cat_stock_median",
     "cat_pct_official",
@@ -49,7 +48,7 @@
     "cat_fashion",
     "cat_pertukangan"
   ],
-  "n_features": 23,
+  "n_features": 22,
   "removed_features": [
     "is_official — digabung ke trust_factor"
   ],

@@ -37,7 +37,6 @@
 - [![Firebase][Firebase.com]][Firebase-url]
 - [![FastAPI][FastAPI]][FastAPI-url]
 - [![Scikit-Learn][Sklearn]][Sklearn-url]
-- [![XGBoost][XGBoost]][XGBoost-url]
 - [![Lucide React][Lucide.dev]][Lucide-url]
 
 ---
@@ -99,7 +98,7 @@
 ## ✨ Features
 
 ### 1. **Product Potential Analysis**
-Predict whether a product has a high chance of selling using an XGBoost Machine Learning model based on category, selling price, discounted price, stock, average rating, Official Store status, and TopAds.
+Predict whether a product has a high chance of selling using a Gradient Boosting Machine Learning model based on product category, selling price, discounted price, stock availability, average rating, Official Store status, and Gold Merchant status.
 
 ### 2. **Platform Recommendation + Commission Simulation**
 Compare Shopee, Tokopedia, and TikTok Shop to find the most suitable marketplace with estimated commission calculations.
@@ -115,22 +114,29 @@ Continue your business journey with guidance from experienced business mentors.
 
 ---
 
-## Machine Learning
+## ✦ Machine Learning
 
 ### Product Prediction
 
-- Model: XGBoost
-- Test AUC: **0.760**
-- Accuracy: **68%**
+- Model: **Gradient Boosting Tuned**
+- Test AUC: **0.7446**
+- Output:
+  - Product Potential (Laku / Tidak Laku)
+  - Success Probability Score
+  - Risk Level
+  - Business Recommendations
 
 ### Review Sentiment Analysis
 
-- Model: TF-IDF + Linear SVM
+- Model: **TF-IDF + Linear SVM**
+- Output:
+  - Positive Sentiment
+  - Neutral Sentiment
+  - Negative Sentiment
 
 Machine Learning Repository:
 
 https://github.com/adinnn30/UMKMentor-ML
-
 ---
 
 ## 📄 License
@@ -161,7 +167,5 @@ https://github.com/adinnn30/UMKMentor-ML
 [FastAPI-url]: https://fastapi.tiangolo.com
 [Sklearn]: https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white
 [Sklearn-url]: https://scikit-learn.org
-[XGBoost]: https://img.shields.io/badge/XGBoost-AA4A44?style=for-the-badge
-[XGBoost-url]: https://xgboost.ai
 [Lucide.dev]: https://img.shields.io/badge/Lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white
 [Lucide-url]: https://lucide.dev

@@ -23,7 +23,7 @@ const initialFormData = {
   diskon: 0,
   stok: '',
   is_official: false,
-  is_topads: false,
+  gold_merchant: false,
   rating_average: 5,
   deskripsi: '',
 }
@@ -69,16 +69,19 @@ export default function HomePage() {
       formData.produk
 
     try {
+      const discountedPrice =
+        diskonPersen > 0 ? hargaDiskon : null
+
       const productPromise = predictProduct({
         kategori: formData.produk,
         harga_jual: hargaJual,
-        harga_diskon: hargaDiskon,
+        discounted_price: discountedPrice,
         stok: parseInt(formData.stok) || 0,
         is_official: formData.is_official ? 1 : 0,
         rating_average: parseFloat(formData.rating_average) || 5,
-        is_topads: formData.is_topads ? 1 : 0,
+        gold_merchant: formData.gold_merchant ? 1 : 0,
       })
-
+      
       const sentimentPromise = formData.produk === 'elektronik'
         ? predictSentiment(
             formData.deskripsi
