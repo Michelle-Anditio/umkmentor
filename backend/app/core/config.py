@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 
 # Sentiment model paths
 SENTIMENT_MODEL_DIR = BASE_DIR / "models" / "sentiment"
-SENTIMENT_CSV_PATH = SENTIMENT_MODEL_DIR / "elektronik.csv"
+SENTIMENT_CSV_PATH = SENTIMENT_MODEL_DIR / "clean_dataset_umkmentor_all_category.csv"
 
 # Product prediction model paths
 PRODUCT_MODEL_DIR = BASE_DIR / "models" / "product"

@@ -57,15 +57,25 @@ export default function ResultCard({ analysisState, resultData, productData, sen
             </span>
           </div>
           <div className="metric-row">
-            <span className="metric-label">Median Harga Kategori</span>
-            <span className="metric-value">Rp {productData.harga_median_cat?.toLocaleString('id')}</span>
+            <span className="metric-label">Harga Pasar Kategori</span>
+            <span className="metric-value">
+              Rp {productData.harga_median_cat?.toLocaleString('id')}
+            </span>
           </div>
-          {productData.cat_laku_rate !== undefined && (
-            <div className="metric-row">
-              <span className="metric-label">Tingkat Laku Kategori</span>
-              <span className="metric-value">{productData.cat_laku_rate}% produk laku</span>
-            </div>
-          )}
+
+          <div className="metric-row">
+            <span className="metric-label">Stok Pasar Kategori</span>
+            <span className="metric-value">
+              {productData.stock_median_cat} unit
+            </span>
+          </div>
+
+          <div className="metric-row">
+            <span className="metric-label">Produk Official Store</span>
+            <span className="metric-value">
+              {productData.cat_pct_official}%
+            </span>
+          </div>
 
           {sentimentData && (
             <>

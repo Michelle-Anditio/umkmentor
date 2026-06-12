@@ -32,16 +32,45 @@ def build_dataset_summary() -> None:
         print("Kolom review tidak ditemukan, dataset_summary kosong")
         return
 
-    sample = dataframe["review"].dropna().sample(
-        min(1000, len(dataframe)),
-        random_state=42
-    ).tolist()
+    category_column = None
 
-    sentiments = predict_texts(sample)
-    sentiment_state.dataset_summary = build_summary(sentiments)
+    for column in ["kategori", "category", "Kategori", "Category"]:
+        if column in dataframe.columns:
+            category_column = column
+            break
 
-    print(f"Dataset summary: {sentiment_state.dataset_summary}")
+    if category_column is None:
+        sample = dataframe["review"].dropna().sample(
+            min(1000, len(dataframe)),
+            random_state=42
+        ).tolist()
 
+        sentiments = predict_texts(sample)
+        sentiment_state.dataset_summary = build_summary(sentiments)
+
+        print(f"Dataset summary global: {sentiment_state.dataset_summary}")
+        return
+
+    summary_by_category = {}
+
+    for category, group in dataframe.groupby(category_column):
+        reviews = group["review"].dropna().tolist()
+
+        if not reviews:
+            continue
+
+        if len(reviews) > 1000:
+            reviews = group["review"].dropna().sample(
+                1000,
+                random_state=42
+            ).tolist()
+
+        sentiments = predict_texts(reviews)
+        summary_by_category[str(category).lower()] = build_summary(sentiments)
+
+    sentiment_state.dataset_summary = summary_by_category
+
+    print(f"Dataset summary per kategori: {sentiment_state.dataset_summary}")
 
 def predict_texts(texts: list[str]) -> list[str]:
     vectorized_texts = sentiment_state.tfidf.transform([str(text) for text in texts])

@@ -100,17 +100,18 @@
 ### 1. **Product Potential Analysis**
 Predict whether a product has a high chance of selling using a Gradient Boosting Machine Learning model based on product category, selling price, discounted price, stock availability, average rating, Official Store status, and Gold Merchant status.
 
-### 2. **Platform Recommendation + Commission Simulation**
+### 2. **Price & Admin Fee Simulation**
+Calculate estimated profit after marketplace administrative fees and operational costs.
 Compare Shopee, Tokopedia, and TikTok Shop to find the most suitable marketplace with estimated commission calculations.
 
-### 3. **Competitor Insights**
-Analyze competitor pricing and marketplace trends to help users position their products more effectively.
+### 3. **Market Insights**
+Analyze category pricing and marketplace trends to help users position their products more effectively.
 
 ### 4. **Review Sentiment Analysis**
 Analyze Indonesian marketplace reviews using a TF-IDF + Linear SVM model to better understand customer perception.
 
-### 5. **Expert Consultation**
-Continue your business journey with guidance from experienced business mentors.
+### 5. **Platform Recommendation**
+Compare estimated profitability across multiple e-commerce platforms based on selling price, product cost, and administrative fees.
 
 ---
 

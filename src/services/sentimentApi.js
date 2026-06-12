@@ -13,3 +13,13 @@ export async function predictSentiment(reviews) {
 
   return response.json()
 }
+
+export async function getSentimentSummary() {
+  const response = await fetch(`${API_URL}/sentiment-summary`)
+
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status}`)
+  }
+
+  return response.json()
+}

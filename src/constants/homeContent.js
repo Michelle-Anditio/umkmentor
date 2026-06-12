@@ -10,7 +10,7 @@ export const featurePreviews = {
       { label: 'Prediksi Model AI', value: 'Berpotensi Laku', cls: 'good' },
       { label: 'Peluang Laku', value: '85%', cls: 'good' },
       { label: 'Tingkat Risiko', value: 'Rendah', cls: 'good' },
-      { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
+      { label: 'Harga Pasar Kategori Kategori', value: 'Rp 52.000', cls: '' },
     ],
     insight: 'Berdasarkan model klasifikasi AI, produk kecantikan dengan harga jual Rp 55.000 memiliki peluang laku tinggi. Sesuaikan harga diskon dan tingkatkan ulasan positif untuk mengoptimalkan potensi.',
   },
@@ -31,11 +31,11 @@ export const featurePreviews = {
     subtitle: 'Kategori: Kecantikan',
     metrics: [
       { label: 'Kategori Produk', value: 'Kecantikan', cls: '' },
-      { label: 'Tingkat Laku Kategori', value: '72% produk laku', cls: 'good' },
-      { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
+      { label: 'Stok Pasar Kategori', value: '72% produk laku', cls: 'good' },
+      { label: 'Harga Pasar Kategori', value: 'Rp 52.000', cls: '' },
       { label: 'Tingkat Risiko Kategori', value: 'Rendah', cls: 'good' },
     ],
-    insight: 'Kondisi pasar sangat potensial berdasarkan tingkat laku kategori yang stabil. Hindari perang harga ekstrem dan fokuslah pada optimasi rating dan ulasan positif.',
+    insight: 'Kondisi pasar sangat potensial berdasarkan stok pasar kategori yang stabil. Hindari perang harga ekstrem dan fokuslah pada optimasi rating dan ulasan positif.',
   },
   sentimen: {
     title: 'Analisis Sentimen Ulasan',

@@ -66,7 +66,7 @@ export default function ProductAnalysisSection({
 
             <div className="form-grid-2">
               <div className="form-group">
-                <label htmlFor="input-rating">Rating Rata-rata</label>
+                <label htmlFor="input-rating">Rating Produk <span className="label-optional">(opsional)</span></label>
                 <input
                   id="input-rating"
                   type="number"

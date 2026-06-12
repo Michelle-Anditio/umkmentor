@@ -6,19 +6,19 @@ const tabData = {
       metrics: [
         { label: 'Kategori Produk', value: 'Kecantikan', cls: '' },
         { label: 'Peluang Laku (Model AI)', value: '85% Berpotensi Laku', cls: 'good' },
-        { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
-        { label: 'Tingkat Laku Kategori', value: '72% produk laku', cls: 'good' },
+        { label: 'Harga Pasar Kategori', value: 'Rp 52.000', cls: '' },
+        { label: 'Stok Pasar Kategori', value: '45 unit', cls: '' },
+        { label: 'Produk Official Store', value: '31%', cls: '' },
         { label: 'Tingkat Risiko Model AI', value: 'Rendah', cls: 'good' },
-        { label: 'Status Gold Merchant', value: 'Meningkatkan visibilitas', cls: '' },
-        { label: 'Faktor Official Store', value: 'Meningkatkan ulasan positif', cls: '' }
+        { label: 'Status Gold Merchant', value: 'Meningkatkan visibilitas toko', cls: '' }
       ]
     },
     saran: {
       points: [
-        'Tetapkan harga jual mendekati median harga kategori (sekitar Rp52.000) agar dinilai wajar oleh pasar.',
-        'Gunakan status Official Store untuk mendapatkan peningkatan peluang laku secara umum.',
-        'Gunakan status Gold Merchant untuk meningkatkan kepercayaan toko.',
-        'Mulai dengan target stok moderat guna menguji penerimaan awal pembeli.'
+        'Harga produk masih berada dalam rentang pasar kategori sehingga peluang diterima pembeli cukup baik.',
+        'Perhatikan stok agar tetap tersedia saat permintaan meningkat.',
+        'Status Official Store dapat membantu meningkatkan kepercayaan pembeli.',
+        'Manfaatkan Gold Merchant untuk memperkuat visibilitas toko.'
       ]
     }
   },
@@ -47,19 +47,19 @@ const tabData = {
     detail: {
       metrics: [
         { label: 'Kategori Analisis', value: 'Kecantikan', cls: '' },
-        { label: 'Median Harga Kategori', value: 'Rp 52.000', cls: '' },
-        { label: 'Tingkat Laku Kategori', value: '72% produk laku', cls: 'good' },
-        { label: 'Tingkat Risiko Model AI', value: 'Rendah', cls: 'good' },
-        { label: 'Faktor Penentu Laku', value: 'Akurasi Harga & Ulasan', cls: 'good' },
+        { label: 'Harga Pasar Kategori', value: 'Rp 52.000', cls: '' },
+        { label: 'Stok Pasar Kategori', value: '45 unit', cls: '' },
+        { label: 'Produk Official Store', value: '31%', cls: '' },
+        { label: 'Faktor Penentu Laku', value: 'Harga, Rating & Ulasan', cls: 'good' },
         { label: 'Rekomendasi Margin', value: 'Minimal 45%', cls: '' }
       ]
     },
     saran: {
       points: [
-        'Gunakan rentang harga di sekitar median kategori agar produk bersaing di pasar.',
-        'Hindari perang harga ekstrem dan fokuslah menjaga kualitas ulasan positif dari pembeli.',
-        'Perkuat material branding pada halaman toko dan kemasan produk untuk membenarkan nilai harga jual.',
-        'Mulai dengan pengiriman teratur dan kendali stok yang baik agar tidak kelebihan pasokan di awal.'
+        'Bandingkan harga produk dengan harga pasar kategori sebelum menentukan harga jual.',
+        'Perhatikan pola stok kompetitor agar tidak kehabisan maupun kelebihan stok.',
+        'Bangun ulasan positif untuk meningkatkan kepercayaan pembeli.',
+        'Fokus pada kualitas produk daripada perang harga ekstrem.'
       ]
     }
   },

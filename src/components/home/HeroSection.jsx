@@ -22,16 +22,16 @@ export default function HeroSection() {
           </div>
           <ul className="hero-stats fade-up fade-up-4" aria-label="Statistik platform">
             <li className="stat">
-              <strong className="stat-num">50rb+</strong>
-              <span className="stat-label">Data produk dianalisis</span>
+              <strong className="stat-num">67.200+</strong>
+              <span className="stat-label">Data Ulasan Produk</span>
             </li>
             <li className="stat">
-              <strong className="stat-num">3</strong>
-              <span className="stat-label">Platform e-commerce</span>
+              <strong className="stat-num">7</strong>
+              <span className="stat-label">Kategori Produk</span>
             </li>
             <li className="stat">
-              <strong className="stat-num">86%</strong>
-              <span className="stat-label">Akurasi model AI</span>
+              <strong className="stat-num">2</strong>
+              <span className="stat-label">Model AI Terintegrasi</span>
             </li>
           </ul>
         </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebase'
 import { predictProduct } from '../services/productApi'
-import { predictSentiment } from '../services/sentimentApi'
+import { getSentimentSummary } from '../services/sentimentApi'
 import { KATEGORI_OPTIONS } from '../constants/categories'
 import Navbar from '../components/home/Navbar'
 import HeroSection from '../components/home/HeroSection'
@@ -82,18 +82,16 @@ export default function HomePage() {
         gold_merchant: formData.gold_merchant ? 1 : 0,
       })
       
-      const sentimentPromise = formData.produk === 'elektronik'
-        ? predictSentiment(
-            formData.deskripsi
-              ? [formData.deskripsi]
-              : ['produk bagus dan awet', 'pengiriman cepat', 'barang tidak sesuai deskripsi']
-          )
-        : Promise.resolve(null)
-
+      const sentimentPromise = getSentimentSummary(
+        formData.deskripsi
+          ? [formData.deskripsi]
+          : ['produk bagus dan awet', 'pengiriman cepat', 'barang tidak sesuai deskripsi']
+      )
+      
       const [productResult, sentimentResult] = await Promise.all([productPromise, sentimentPromise])
 
       setProductData(productResult)
-      setSentimentData(sentimentResult)
+      setSentimentData(sentimentResult?.[formData.produk] || null)
       setResultData({ hargaJual, hargaDiskon, kategori: formData.produk, kategoriLabel })
       setAnalysisState('done')
     } catch (error) {
