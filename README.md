@@ -134,9 +134,6 @@ Continue your business journey with guidance from experienced business mentors.
   - Neutral Sentiment
   - Negative Sentiment
 
-Machine Learning Repository:
-
-https://github.com/adinnn30/UMKMentor-ML
 ---
 
 ## 📄 License
@@ -152,7 +149,8 @@ Project Link: https://github.com/Michelle-Anditio/umkmentor
 Demo: https://umkmentor.netlify.app
 
 Machine Learning Repository:
-https://github.com/adinnn30/UMKMentor-ML
+- [Sentiment Analysis](https://github.com/adinnn30/UMKMentor-ML)
+- [Product Success Predictor](https://github.com/Michaelatj/Category-Sales-Potential-Predictor)
 
 ---
 
