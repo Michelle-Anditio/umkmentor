@@ -251,7 +251,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* Paket */}
+            {/* Paket
             <div className="paket-card">
               <div>
                 <div className="paket-name">Paket Gratis</div>
@@ -263,7 +263,7 @@ export default function ProfilePage() {
                   <div className="quota-fill" style={{ width: `${Math.min((riwayat.length / 5) * 100, 100)}%` }}></div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Riwayat */}
             <div className="profile-card">

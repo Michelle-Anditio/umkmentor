@@ -44,6 +44,12 @@ export default function HomePage() {
   const [showChat, setShowChat] = useState(false)
 
   const handleKonsultasi = () => {
+    if (!user) {
+      alert('Silakan login terlebih dahulu untuk menggunakan UMKMentor AI 😊')
+      window.location.href = '/login'
+      return
+    }
+  
     setShowChat(true)
   }
 
