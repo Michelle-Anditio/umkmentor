@@ -110,8 +110,8 @@ Analyze category pricing and marketplace trends to help users position their pro
 ### 4. **Review Sentiment Analysis**
 Analyze Indonesian marketplace reviews using a TF-IDF + Linear SVM model to better understand customer perception.
 
-### 5. **Platform Recommendation**
-Compare estimated profitability across multiple e-commerce platforms based on selling price, product cost, and administrative fees.
+### 5. **UMKMentor AI (Business Assistant)**
+An interactive AI-powered consultant—powered by Groq LLM—designed to provide real-time strategic insights on pricing, marketing, and business decision-making.
 
 ---
 

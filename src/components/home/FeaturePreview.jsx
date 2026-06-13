@@ -82,22 +82,24 @@ const tabData = {
       ]
     }
   },
+
   platform: {
     detail: {
       metrics: [
-        { label: 'Shopee (Biaya Admin 6.5%)', value: 'Profit Rp 28.425 (Margin 51.7%)', cls: '' },
-        { label: 'Tokopedia (Biaya Admin 5.0%)', value: 'Profit Rp 29.250 (Margin 53.2%)', cls: 'good' },
-        { label: 'TikTok Shop (Biaya Admin 8.0%)', value: 'Profit Rp 27.600 (Margin 50.2%)', cls: 'warn' }
+        { label: 'Mode Analisis', value: 'Real-time AI Chat', cls: '' },
+        { label: 'Kemampuan', value: 'Strategi, pricing, marketing', cls: 'good' },
+        { label: 'Respons', value: 'Cepat & Kontekstual', cls: '' },
+        { label: 'Sumber AI', value: 'Groq LLM API', cls: '' }
       ]
     },
     saran: {
       points: [
-        'Pilih platform dengan estimasi profit bersih tertinggi sebagai prioritas awal.',
-        'Gunakan hasil simulasi ini sebagai dasar perbandingan biaya, bukan prediksi penjualan.',
-        'Pertimbangkan juga faktor non-biaya administrasi seperti trafik, promo, dan target pembeli sebelum mengambil keputusan akhir.',
-        'Validasi hasil dengan uji listing kecil sebelum menambah stok besar.'
+        'Gunakan Real-time AI Chat untuk konsultasi strategi pricing dan keputusan jualan tanpa tebak-tebakan.',
+        'Manfaatkan kemampuan AI dalam menyusun rencana marketing yang spesifik untuk target pasar UMKM kamu.',
+        'Ajukan pertanyaan secara detail dan kontekstual agar asisten UMKMentor AI bisa memberikan solusi yang lebih akurat.',
+        'Gunakan insight ini sebagai referensi pembanding sebelum mengambil keputusan bisnis yang besar.'
       ],
-      disclaimer: 'Rekomendasi platform dihitung dari simulasi biaya administrasi, bukan prediksi trafik atau jumlah penjualan aktual.'
+      disclaimer: 'Asisten konsultasi bisnis ini didukung oleh Groq LLM API. Seluruh saran bersifat rekomendasi strategi dan bukan jaminan mutlak keberhasilan operasional.'
     }
   }
 }
