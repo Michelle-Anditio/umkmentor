@@ -1,6 +1,15 @@
 import ResultCard from './ResultCard'
 import { KATEGORI_OPTIONS } from '../../constants/categories'
 
+const formatNumber = (value) => {
+  if (!value) return ''
+  return Number(value).toLocaleString('id-ID')
+}
+
+const parseNumber = (value) => {
+  return value.replace(/\D/g, '')
+}
+
 export default function ProductAnalysisSection({
   formData,
   setFormData,
@@ -34,8 +43,13 @@ export default function ProductAnalysisSection({
                 id="input-harga"
                 type="text"
                 placeholder="Rp 0"
-                value={formData.harga}
-                onChange={e => setFormData(f => ({ ...f, harga: e.target.value }))}
+                value={formatNumber(formData.harga)}
+                onChange={e =>
+                  setFormData(f => ({
+                    ...f,
+                    harga: parseNumber(e.target.value),
+                  }))
+                }
               />
             </div>
 
@@ -56,11 +70,15 @@ export default function ProductAnalysisSection({
                 <label htmlFor="input-stok">Stok (unit)</label>
                 <input
                   id="input-stok"
-                  type="number"
+                  type="text"
                   placeholder="100"
-                  min="0"
-                  value={formData.stok}
-                  onChange={e => setFormData(f => ({ ...f, stok: e.target.value }))}
+                  value={formatNumber(formData.stok)}
+                  onChange={e =>
+                    setFormData(f => ({
+                      ...f,
+                      stok: parseNumber(e.target.value),
+                    }))
+                  }
                 />
               </div>
             </div>

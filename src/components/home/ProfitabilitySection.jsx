@@ -5,6 +5,15 @@ import { PLATFORM_OPTIONS } from '../../constants/platforms'
 import { auth, db } from '../../firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
+const formatNumber = (value) => {
+  if (!value) return ''
+  return Number(String(value).replace(/\D/g, '')).toLocaleString('id-ID')
+}
+
+const parseNumber = (value) => {
+  return value.replace(/\D/g, '')
+}
+
 export default function ProfitabilitySection() {
   const [cat, setCat] = useState('')
   const [price, setPrice] = useState('')
@@ -90,11 +99,23 @@ export default function ProfitabilitySection() {
             <div className="form-grid-2">
               <div className="form-group">
                 <label htmlFor="sim-price">Harga Jual</label>
-                <input id="sim-price" type="text" placeholder="Rp 0" value={price} onChange={e => setPrice(e.target.value)} />
+                <input
+                  id="sim-price"
+                  type="text"
+                  placeholder="Rp 0"
+                  value={formatNumber(price)}
+                  onChange={e => setPrice(parseNumber(e.target.value))}
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="sim-hpp">HPP</label>
-                <input id="sim-hpp" type="text" placeholder="Rp 0" value={hpp} onChange={e => setHpp(e.target.value)} />
+                <input
+                  id="sim-hpp"
+                  type="text"
+                  placeholder="Rp 0"
+                  value={formatNumber(hpp)}
+                  onChange={e => setHpp(parseNumber(e.target.value))}
+                />
               </div>
             </div>
 
