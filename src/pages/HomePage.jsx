@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { predictProduct } from '../services/productApi'
 import { getSentimentSummary } from '../services/sentimentApi'
 import { KATEGORI_OPTIONS } from '../constants/categories'
@@ -14,6 +15,7 @@ import ProductAnalysisSection from '../components/home/ProductAnalysisSection'
 import ExpertsSection from '../components/home/ExpertsSection'
 import Footer from '../components/home/Footer'
 import AboutModal from '../components/home/AboutModal'
+import KonsultasiChat from './KonsultasiChat'
 import '../css/style.css'
 
 const initialFormData = {
@@ -39,6 +41,11 @@ export default function HomePage() {
   const [sentimentData, setSentimentData] = useState(null)
   const [productData, setProductData] = useState(null)
   const [isAboutOpen, setIsAboutOpen] = useState(false)
+  const [showChat, setShowChat] = useState(false)
+
+  const handleKonsultasi = () => {
+    setShowChat(true)
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => setUser(currentUser))
@@ -94,6 +101,28 @@ export default function HomePage() {
       setSentimentData(sentimentResult?.[formData.produk] || null)
       setResultData({ hargaJual, hargaDiskon, kategori: formData.produk, kategoriLabel })
       setAnalysisState('done')
+
+      if (user) {
+        await addDoc(collection(db, 'riwayat'), {
+          uid: user.uid,
+          namaProduk: formData.produk,
+          kategoriLabel,
+          harga_jual: hargaJual,
+          harga_diskon: hargaDiskon,
+          prediction: productResult.prediction,
+          laku_score: productResult.laku_score,
+          risk_level: productResult.risk_level,
+          harga_median_cat: productResult.harga_median_cat,
+          stock_median_cat: productResult.stock_median_cat,
+          cat_pct_official: productResult.cat_pct_official,
+          saran: productResult.saran || [],
+          sentimen_positif: sentimentResult?.[formData.produk]?.positive || null,
+          sentimen_negatif: sentimentResult?.[formData.produk]?.negative || null,
+          sentimen_netral: sentimentResult?.[formData.produk]?.neutral || null,
+          createdAt: serverTimestamp(),
+        })
+      }
+
     } catch (error) {
       console.error('Gagal analisis detail:', error)
       alert(error.message)
@@ -118,12 +147,21 @@ export default function HomePage() {
           resultData={resultData}
           productData={productData}
           sentimentData={sentimentData}
+          onKonsultasi={handleKonsultasi}
         />
         <ProfitabilitySection />
         <ExpertsSection />
       </main>
 
       <Footer onAboutClick={() => setIsAboutOpen(true)} />
+      
+      {showChat && (
+        <KonsultasiChat
+          productData={productData}
+          sentimentData={sentimentData}
+          onClose={() => setShowChat(false)}
+        />
+      )}
 
       <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
     </>

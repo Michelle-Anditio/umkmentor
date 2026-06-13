@@ -9,6 +9,7 @@ export default function ProductAnalysisSection({
   resultData,
   productData,
   sentimentData,
+  onKonsultasi,
 }) {
   return (
     <section id="analisis" aria-labelledby="analisis-title">
@@ -122,6 +123,7 @@ export default function ProductAnalysisSection({
               resultData={resultData}
               productData={productData}
               sentimentData={sentimentData}
+              onKonsultasi={onKonsultasi}
             />
           </aside>
         </div>

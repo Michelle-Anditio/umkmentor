@@ -1,6 +1,6 @@
 import { getCommissionRange } from '../../utils/commission'
 
-export default function ResultCard({ analysisState, resultData, productData, sentimentData }) {
+export default function ResultCard({ analysisState, resultData, productData, sentimentData, onKonsultasi }) {
   const scoreBadgeStyle =
     analysisState === 'loading'
       ? { background: 'rgba(201,136,42,0.1)', color: 'var(--accent2)' }
@@ -123,8 +123,13 @@ export default function ResultCard({ analysisState, resultData, productData, sen
 
           <div style={{ marginTop: '16px', padding: '14px', background: 'rgba(232,82,10,0.06)', border: '1px solid rgba(232,82,10,0.15)', borderRadius: '10px', fontSize: '13px', color: 'var(--black)' }}>
             <strong style={{ color: 'var(--black)' }}>Butuh pendampingan lebih?</strong><br />
-            Konsultasikan strategi ini dengan pakar kami.<br />
-            <a href="#pakar" style={{ color: 'var(--accent)', fontWeight: '600', textDecoration: 'none' }}>Lihat Konsultan  </a>
+            Konsultasikan strategi ini dengan AI kami.<br />
+            <button
+              onClick={onKonsultasi}
+              style={{ color: 'var(--accent)', fontWeight: '600', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontSize: '13px' }}
+            >
+              Mulai Konsultasi
+            </button>
           </div>
         </>
       )}

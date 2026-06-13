@@ -14,3 +14,8 @@ class ProductRequest(BaseModel):
     rating_average: float = 5.0
     gold_merchant: int = 0
     discounted_price: float | None = None
+    
+    
+class KonsultasiRequest(BaseModel):
+    messages: list[dict]
+    analysis_context: dict | None = None

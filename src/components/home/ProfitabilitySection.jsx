@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { KATEGORI_OPTIONS } from '../../constants/categories'
 import { PLATFORM_COMMISSION } from '../../utils/commission'
 import { PLATFORM_OPTIONS } from '../../constants/platforms'
+import { auth, db } from '../../firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 export default function ProfitabilitySection() {
   const [cat, setCat] = useState('')
@@ -12,20 +14,13 @@ export default function ProfitabilitySection() {
 
   const togglePlatform = key => {
     setSelectedPlatforms((prev = []) => {
-      if (prev.includes(key)) {
-        return prev.filter(k => k !== key)
-      }
-  
-      if (prev.length >= 2) {
-        alert('Maksimal 2 marketplace!')
-        return prev
-      }
-  
+      if (prev.includes(key)) return prev.filter(k => k !== key)
+      if (prev.length >= 2) { alert('Maksimal 2 marketplace!'); return prev }
       return [...prev, key]
     })
   }
 
-  const calculate = () => {
+  const calculate = async () => {
     if (!cat || !price || !hpp || !selectedPlatforms.length) {
       alert('Lengkapi semua field dan pilih minimal 1 marketplace!')
       return
@@ -47,6 +42,30 @@ export default function ProfitabilitySection() {
     })
 
     setResults({ gross, computed })
+
+    const currentUser = auth.currentUser
+    if (currentUser) {
+      try {
+        await addDoc(collection(db, 'riwayat_simulator'), {
+          uid: currentUser.uid,
+          kategori: cat,
+          kategoriLabel: KATEGORI_OPTIONS.find(k => k.value === cat)?.label || cat,
+          harga_jual: p,
+          hpp: h,
+          gross_profit: gross,
+          platforms: computed.map(r => ({
+            key: r.key,
+            netMin: r.netMin,
+            netMax: r.netMax,
+            marginMin: r.marginMin,
+            marginMax: r.marginMax,
+          })),
+          createdAt: serverTimestamp(),
+        })
+      } catch (e) {
+        console.error('Gagal simpan riwayat simulator:', e)
+      }
+    }
   }
 
   const fmt = n => 'Rp ' + Math.round(n).toLocaleString('id')

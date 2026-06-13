@@ -4,6 +4,8 @@ from app.models.model_store import product_state, sentiment_state
 from app.schemas.requests import ProductRequest, ReviewRequest
 from app.services.product_service import run_product_prediction
 from app.services.sentiment_service import build_summary, predict_texts
+from app.schemas.requests import KonsultasiRequest
+from app.services.groq_service import chat_with_groq
 
 router = APIRouter()
 
@@ -43,3 +45,12 @@ def predict_product(request: ProductRequest):
         gold_merchant=request.gold_merchant,
         discounted_price=request.discounted_price
     )
+    
+
+@router.post("/konsultasi")
+async def konsultasi(request: KonsultasiRequest):
+    reply = await chat_with_groq(
+        messages=request.messages,
+        analysis_context=request.analysis_context
+    )
+    return {"reply": reply}
