@@ -2,11 +2,6 @@ import { useEffect } from 'react'
 
 const members = [
   {
-    name: 'Michelle Anditio',
-    role: 'Frontend & Backend',
-    linkedin: 'https://www.linkedin.com/in/michelle-anditio/'
-  },
-  {
     name: 'Michael Andreas Tjendra',
     role: 'ML Product',
     linkedin: 'https://www.linkedin.com/in/michael-andreas-tjendra/'
@@ -15,6 +10,11 @@ const members = [
     name: 'Juanda Harefa',
     role: 'ML Product',
     linkedin: 'https://www.linkedin.com/in/juanda-harefa-04621331b/'
+  },
+    {
+    name: 'Michelle Anditio',
+    role: 'Frontend & Backend',
+    linkedin: 'https://www.linkedin.com/in/michelle-anditio/'
   },
   {
     name: 'Adinda Intan Erlita',
@@ -82,7 +82,7 @@ export default function AboutModal({ isOpen, onClose }) {
 
           <div className="about-capstone-group">
             <p className="about-team-title">
-              Team Sumatera (PJK-GM006)
+              ID Team: PJK-GM006
             </p>
 
             <p className="about-capstone-info">
